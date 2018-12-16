@@ -21,8 +21,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 import ElementUI from 'element-ui';
+import VueRouter from 'vue-router';
 import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.use(VueRouter)
 Vue.use(ElementUI);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('my-switch', require('./components/my-switch.vue').default);
