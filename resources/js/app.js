@@ -21,19 +21,44 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 import ElementUI from 'element-ui';
+import Vue from 'vue'
 import VueRouter from 'vue-router';
+import App from './views/App';
+import Bienvenido from './views/bienvenido';
+import Hijo from './views/hijo';
 import 'element-ui/lib/theme-chalk/index.css';
+
 
 Vue.use(VueRouter)
 Vue.use(ElementUI);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('my-switch', require('./components/my-switch.vue').default);
+
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/',
+            name: 'inicio',
+            component: Bienvenido
+        },
+        {
+            path: '/hijo',
+            name: 'hijo',
+            component: Hijo
+        },
+    
+    ],
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: { App },
+    router,
 });
