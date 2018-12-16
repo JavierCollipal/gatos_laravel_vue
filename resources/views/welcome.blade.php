@@ -78,12 +78,15 @@
                     @endauth
                 </div>
             @endif
+            <div id="app">
+           <my-switch></my-switch>  
+            </div>
 
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
+              
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -94,5 +97,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
