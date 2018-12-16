@@ -12,6 +12,10 @@
                         <ul class="navbar-nav mr-auto"></ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
+                            <router-link :to="{name: 'listado'}" class="navbar-brand">Mis gatos</router-link>
+                        </ul>
+
+                        <ul class="navbar-nav ml-auto">
                             <router-link :to="{name: 'hijo'}" class="navbar-brand">Mi hijo</router-link>
                         </ul>
                     </div>

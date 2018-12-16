@@ -26,6 +26,9 @@ import VueRouter from 'vue-router';
 import App from './views/App';
 import Bienvenido from './views/bienvenido';
 import Hijo from './views/hijo';
+import Listado from './views/listado';
+import Insertar from './views/insertado';
+import Modificar from './views/modificar';
 import 'element-ui/lib/theme-chalk/index.css';
 
 
@@ -47,7 +50,21 @@ const router = new VueRouter({
             name: 'hijo',
             component: Hijo
         },
-    
+        {
+            path: '/listado',
+            name: 'listado',
+            component: Listado
+        },
+        {
+            path: '/registro',
+            name: 'registrar',
+            component: Insertar
+        },
+        {
+            path: '/modificar',
+            name: 'modificar',
+            component: Modificar
+        },
     ],
 });
 /**
