@@ -16,7 +16,7 @@ class CreateRazasTable extends Migration
         Schema::create('razas', function (Blueprint $table) {
             //
             $table->increments('id');
-            $table->string('name',200);
+            $table->string('nombre',200);
 
   });
     }
