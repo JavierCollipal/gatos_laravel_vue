@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class complexionTableSeeder extends Seeder
 {
     /**
@@ -12,5 +12,12 @@ class complexionTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('complexion')->insert([
+            ['complexion' => 'Gordito'],
+
+            ['complexion' => 'Flaco'],
+
+            ['complexion' => 'Normal']
+        ]);
     }
 }

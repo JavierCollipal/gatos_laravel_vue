@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class tipoTableSeeder extends Seeder
 {
     /**
@@ -12,5 +12,13 @@ class tipoTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('tipo')->insert([
+            ['tipo' => 'Silvestre'],
+
+            ['tipo' => 'Callejero'],
+
+            ['tipo' => 'Domestico']
+        ]);
+
     }
 }

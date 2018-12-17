@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class caracterTableSeeder extends Seeder
 {
     /**
@@ -12,5 +12,13 @@ class caracterTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('caracter')->insert([
+            ['caracter' => 'Flojo'],
+            ['caracter' => 'Rabioso'],
+            ['caracter' => 'Tierno'],
+            ['caracter' => 'Jugueton'],
+            ['caracter' => 'Dormilon']
+        ]);
+
     }
 }

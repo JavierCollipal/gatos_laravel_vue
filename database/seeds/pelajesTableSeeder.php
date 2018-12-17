@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class pelajesTableSeeder extends Seeder
 {
     /**
@@ -12,5 +12,18 @@ class pelajesTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('pelajes')->insert([
+            ['pelaje' => 'esponjoso'],
+
+            ['pelaje' => 'peludo'],
+
+            ['pelaje' => 'pelado'],
+
+            ['pelaje' => 'normal'],
+
+            ['pelaje' => 'angora']
+
+        ]);
+
     }
 }

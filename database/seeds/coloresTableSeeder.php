@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class coloresTableSeeder extends Seeder
 {
     /**
@@ -12,5 +12,19 @@ class coloresTableSeeder extends Seeder
     public function run()
     {
         //
+        DB::table('colores')->insert([
+            ['color' => 'negro'],
+
+            ['color' => 'naranjo'],
+
+            ['color' => 'naranjoBlanco'],
+
+            ['color' => 'naranjoBlancoNegro'],
+
+            ['color' => 'plomo'],
+
+            ['color' => 'blanco']
+        ]);
+
     }
 }
