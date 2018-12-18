@@ -7,7 +7,24 @@
     </div>
 </template>
     <script>
-    export default {}
+    export default {
+        created(){
+            this.listado();
+        },
+        data() {
+            return {
+                gatos: []
+            }
+        },
+        methods: {
+            listado(){
+                axios.get('api/listado').then(response=>{
+                    this.gatos = response.data.gatos;
+                });
+
+            }
+        }
+    }
     </script>
   <style scoped>
     .full-height {
