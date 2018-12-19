@@ -13,18 +13,19 @@ class gato extends Model
   return $this->hasOne('App\caracter','id','id_caracter');
   }
     public function colores(){
-        return     $this->hasOne('App\colores','id','id_color');
+        return  $this->hasOne('App\colores','id','id_color');
     }
     public function complexion(){
-        return  $this->hasMany('App\complexion','id_complexion');
+        return  $this->hasOne('App\complexion','id','id_complexion');
     }
     public function pelajes(){
-        return  $this->hasMany('App\pelajes','id_pelaje');
+
+        return  $this->hasOne('App\pelajes','id','id_pelaje');
     }
     public function razas(){
-        return    $this->hasMany('App\razas','id_raza');
+        return    $this->hasOne('App\razas','id','id_raza');
     }
     public function tipo(){
-        return    $this->hasMany('App\tipo','id_tipo');
+        return    $this->hasOne('App\tipo','id','id_tipo');
     }
 }

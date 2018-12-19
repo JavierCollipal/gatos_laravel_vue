@@ -12,32 +12,32 @@
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="id_raza"
+                        prop="razas.raza"
                         label="Raza"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="id_color"
+                        prop="colores.color"
                         label="Color"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="id_pelaje"
+                        prop="pelajes.pelaje"
                         label="Pelaje"
                         width="180">
                 </el-table-column>
                 <el-table-column
-                        prop="id_complexion"
+                        prop="complexion.complexion"
                         label="Complexion"
                         width="180">
                 </el-table-column>
                 <el-table-colum
-                        prop="id_caracter"
+                        prop="caracter.caracter"
                         label="Caracter"
                         width="180">
                 </el-table-colum>
                 <el-table-column
-                        prop="id_tipo"
+                        prop="tipo.tipo"
                         label="Tipo"
                         width="180">
                 </el-table-column>
