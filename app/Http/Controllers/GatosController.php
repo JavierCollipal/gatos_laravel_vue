@@ -8,7 +8,7 @@ class GatosController extends Controller
 {
     //
     public function index(){
-        $gatos=gato::all();
+        $gatos=gato::with('caracter','colores')->get();
         return ['gatos' => $gatos];
     }
 }

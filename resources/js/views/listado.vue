@@ -2,7 +2,47 @@
 
         <div class="flex-center position-ref full-height">
         <div class="container">
+            <el-table
+                    :data="gatos"
+                    border
+                    style="width: 100%">
+                <el-table-column
+                        prop="nombre"
+                        label="Nombre"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="id_raza"
+                        label="Raza"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="id_color"
+                        label="Color"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="id_pelaje"
+                        label="Pelaje"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="id_complexion"
+                        label="Complexion"
+                        width="180">
+                </el-table-column>
+                <el-table-colum
+                        prop="id_caracter"
+                        label="Caracter"
+                        width="180">
+                </el-table-colum>
+                <el-table-column
+                        prop="id_tipo"
+                        label="Tipo"
+                        width="180">
+                </el-table-column>
 
+            </el-table>
         </div>
     </div>
 </template>
