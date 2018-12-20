@@ -31,11 +31,11 @@
                         label="Complexion"
                         width="180">
                 </el-table-column>
-                <el-table-colum
+                <el-table-column
                         prop="caracter.caracter"
                         label="Caracter"
                         width="180">
-                </el-table-colum>
+                </el-table-column>
                 <el-table-column
                         prop="tipo.tipo"
                         label="Tipo"
