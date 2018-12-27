@@ -41,7 +41,16 @@
                         label="Tipo"
                         width="180">
                 </el-table-column>
+                <el-table-column
+                        fixed="right"
+                        label="Operaciones"
+                        width="120">
 
+                    <template slot-scope="scope">
+                        <el-button type="danger" v-if="scope.row.activo === 'S'" @click="desactivar(scope.row.id)" size="small">Desactivar</el-button>
+                        <el-button type="primary" v-else  @click="activar(scope.row.id)" size="small">Activar</el-button>
+                    </template>
+                </el-table-column>
             </el-table>
         </div>
     </div>
@@ -62,6 +71,53 @@
                     this.gatos = response.data.gatos;
                 });
 
+            },
+            activar(id) {
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                console.log(id);
+                this.$confirm('Desea activar al gatito seleccionado ;=)?', 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/activar').then(responser =>{
+                        this.$message({
+                            type: 'success',
+                            message: 'Activacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Activacion Cancelada'
+                    });
+                });
+            },
+            desactivar(id) {
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                this.$confirm('Desea desactivar al gatito seleccionado ;=(?', 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/desactivar').then(response =>{
+                        this.$message({
+                            type: 'success',
+                            message: 'Activacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Activacion Cancelada'
+                    });
+                });
             }
         }
     }
