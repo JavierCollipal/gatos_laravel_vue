@@ -16,15 +16,15 @@ class GatosController extends Controller
         /*verificamos con findOrFail si existe la id*/
         $gato = gato::findOrFail($request->id);
         /*declaramos los campos a actualizar*/
-        $gato->activo = 'S';
+        $gato->activo='S';
         /*finalmente guardamos con save*/
         $gato->save();
     }
     public function desactivar(Request $request){
         /*verificamos con findOrFail si existe la id*/
-        $gato = gato::findOrFail($request->id);
+        $gato = gato::findorFail($request->id);
         /*declaramos los campos a actualizar*/
-        $gato->activo = 'N';
+        $gato->activo= 'N';
         /*finalmente guardamos con save*/
         $gato->save();
     }

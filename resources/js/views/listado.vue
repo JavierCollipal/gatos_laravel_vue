@@ -1,11 +1,25 @@
 <template>
+    <el-container>
+        <el-header>
+            <el-row>
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{ path: '/' }">Gatos</el-breadcrumb-item>
+                    <el-breadcrumb-item>Listado</el-breadcrumb-item>
 
-        <div class="flex-center position-ref full-height">
-        <div class="container">
+                </el-breadcrumb>
+            </el-row>
+
+        <el-row >
+
+        </el-row>
+        </el-header>
+        <el-main>
             <el-table
                     :data="gatos"
                     border
-                    style="width: 100%">
+                    style="width: 100%"
+
+            >
                 <el-table-column
                         prop="nombre"
                         label="Nombre"
@@ -45,15 +59,21 @@
                         fixed="right"
                         label="Operaciones"
                         width="120">
-
                     <template slot-scope="scope">
                         <el-button type="danger" v-if="scope.row.activo === 'S'" @click="desactivar(scope.row.id)" size="small">Desactivar</el-button>
                         <el-button type="primary" v-else  @click="activar(scope.row.id)" size="small">Activar</el-button>
                     </template>
                 </el-table-column>
             </el-table>
-        </div>
-    </div>
+        </el-main>
+
+        <el-footer>
+
+        </el-footer>
+    </el-container>
+
+
+
 </template>
     <script>
     export default {
@@ -82,7 +102,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/activar').then(responser =>{
+                    axios.put('api/activar',{id:id}).then(responser =>{
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'
@@ -105,7 +125,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/desactivar').then(response =>{
+                    axios.put('api/desactivar',{id:id}).then(response =>{
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'
@@ -115,7 +135,7 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: 'Activacion Cancelada'
+                        message: 'Desactivación Cancelada'
                     });
                 });
             }
@@ -157,5 +177,11 @@
     .m-b-md {
         margin-bottom: 30px;
         color: #000000;
+    }
+    .el-table .warning-row {
+        background: oldlace;
+    }
+    .el-table .success-row {
+        background: #f0f9eb;
     }
     </style>
