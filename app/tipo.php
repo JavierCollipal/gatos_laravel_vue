@@ -8,6 +8,6 @@ class tipo extends Model
 {
     //
     protected $table = 'tipo';
-    protected $fillable = ['tipo'];
+    protected $fillable = ['tipo','activo'];
 
 }

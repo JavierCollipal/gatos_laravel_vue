@@ -13,11 +13,11 @@ class caracterTableSeeder extends Seeder
     {
         //
         DB::table('caracter')->insert([
-            ['caracter' => 'Flojo'],
-            ['caracter' => 'Rabioso'],
-            ['caracter' => 'Tierno'],
-            ['caracter' => 'Jugueton'],
-            ['caracter' => 'Dormilon']
+            ['caracter' => 'Flojo','activo'=>'S'],
+            ['caracter' => 'Rabioso','activo'=>'S'],
+            ['caracter' => 'Tierno','activo'=>'S'],
+            ['caracter' => 'Jugueton','activo'=>'S'],
+            ['caracter' => 'Dormilon','activo'=>'S']
         ]);
 
     }

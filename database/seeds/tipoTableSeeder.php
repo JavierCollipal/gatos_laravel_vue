@@ -13,11 +13,11 @@ class tipoTableSeeder extends Seeder
     {
         //
         DB::table('tipo')->insert([
-            ['tipo' => 'Silvestre'],
+            ['tipo' => 'Silvestre','activo'=>'S'],
 
-            ['tipo' => 'Callejero'],
+            ['tipo' => 'Callejero','activo'=>'S'],
 
-            ['tipo' => 'Domestico']
+            ['tipo' => 'Domestico','activo'=>'S']
         ]);
 
     }

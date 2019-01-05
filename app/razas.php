@@ -8,6 +8,6 @@ class razas extends Model
 {
     //
     protected $table = 'razas';
-    protected $fillable = ['raza'];
+    protected $fillable = ['raza','activo'];
 
 }

@@ -13,15 +13,15 @@ class pelajesTableSeeder extends Seeder
     {
         //
         DB::table('pelajes')->insert([
-            ['pelaje' => 'esponjoso'],
+            ['pelaje' => 'esponjoso','activo'=>'S'],
 
-            ['pelaje' => 'peludo'],
+            ['pelaje' => 'peludo','activo'=>'S'],
 
-            ['pelaje' => 'pelado'],
+            ['pelaje' => 'pelado','activo'=>'S'],
 
-            ['pelaje' => 'normal'],
+            ['pelaje' => 'normal','activo'=>'S'],
 
-            ['pelaje' => 'angora']
+            ['pelaje' => 'angora','activo'=>'S']
 
         ]);
 

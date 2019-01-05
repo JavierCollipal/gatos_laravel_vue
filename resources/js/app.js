@@ -27,6 +27,7 @@ import App from './views/App';
 import Bienvenido from './views/bienvenido';
 import Hijo from './views/hijo';
 import Listado from './views/listado';
+import Mantenedor from './views/mantenedores'
 import Insertar from './views/insertado';
 import Modificar from './views/modificar';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -65,13 +66,13 @@ const router = new VueRouter({
             name: 'modificar',
             component: Modificar
         },
+        {
+            path: '/mantenedores',
+            name: 'mantenedor',
+            component: Mantenedor
+        }
     ],
 });
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
 
 const app = new Vue({

@@ -8,6 +8,6 @@ class pelajes extends Model
 {
     //
     protected $table = 'pelajes';
-    protected $fillable = ['pelaje'];
+    protected $fillable = ['pelaje','activo'];
 
 }

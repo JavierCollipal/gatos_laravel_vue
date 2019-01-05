@@ -8,6 +8,6 @@ class caracter extends Model
 {
     //
     protected $table = 'caracter';
-    protected $fillable = ['caracter'];
+    protected $fillable = ['caracter','activo'];
 
 }

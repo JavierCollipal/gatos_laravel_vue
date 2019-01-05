@@ -1,0 +1,237 @@
+<template>
+    <el-container>
+        <el-header>
+            <el-row>
+                <el-breadcrumb separator="/">
+                    <el-breadcrumb-item :to="{ path: '/' }">Gatos</el-breadcrumb-item>
+                    <el-breadcrumb-item>Mantenedor de categorias</el-breadcrumb-item>
+                </el-breadcrumb>
+            </el-row>
+        </el-header>
+
+        <el-main>
+            <el-row :gutter="20">
+                <!--caracteres-->
+                <el-col :span="12" ><div class="grid-content bg-purple">
+                    <el-button type="primary" class="pull-right">Añadir Caracter</el-button>
+                    <el-row>
+                        <el-col>
+                            <el-table
+                                    :data="caracter"
+                                    border
+                                    style="width: 100%"
+                            >
+                                <el-table-column
+                                        prop="caracter"
+                                        label="Caracter"
+                                        width="180">
+                                </el-table-column>
+
+                                <el-table-column
+                                        label="Operaciones">
+                                    <template slot-scope="scope">
+                                        <el-button type="default" size="mini">Modificar</el-button>
+                                        <el-button type="danger" v-if="scope.row.activo === 'S'"  size="mini">Desactivar</el-button>
+                                        <el-button type="primary" v-else  @click="activar(scope.row.id)" size="mini">Activar</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+                </div></el-col>
+                <!--pelajes-->
+                <el-col :span="12"><div class="grid-content bg-purple">
+                    <el-button type="primary" class="pull-right">Añadir pelaje</el-button>
+                    <el-row>
+                        <el-col>
+                            <el-table
+                                    :data="pelaje"
+                                    border
+                                    style="width: 100%"
+                            >
+                                <el-table-column
+                                        prop="pelaje"
+                                        label="Pelaje"
+                                        width="180">
+                                </el-table-column>
+
+                                <el-table-column
+                                        label="Operaciones">
+                                    <template slot-scope="scope">
+                                        <el-button type="default" size="mini">Modificar</el-button>
+                                        <el-button type="danger" v-if="scope.row.activo === 'S'"  size="mini">Desactivar</el-button>
+                                        <el-button type="primary" v-else  @click="activar(scope.row.id)" size="mini">Activar</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+
+                </div></el-col>
+            </el-row>
+            <el-row :gutter="20">
+                <!--tipo-->
+                <el-col :span="12" ><div class="grid-content bg-purple">
+                    <el-button type="primary" class="pull-right">Añadir Caracter</el-button>
+                    <el-row>
+                        <el-col>
+                            <el-table
+                                    :data="caracter"
+                                    border
+                                    style="width: 100%"
+                            >
+                                <el-table-column
+                                        prop="caracter"
+                                        label="Caracter"
+                                        width="180">
+                                </el-table-column>
+
+                                <el-table-column
+                                        label="Operaciones">
+                                    <template slot-scope="scope">
+                                        <el-button type="default" size="mini">Modificar</el-button>
+                                        <el-button type="danger" v-if="scope.row.activo === 'S'"  size="mini">Desactivar</el-button>
+                                        <el-button type="primary" v-else  @click="activar(scope.row.id)" size="mini">Activar</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+                </div></el-col>
+                <!--pelajes-->
+                <el-col :span="12"><div class="grid-content bg-purple">
+                    <el-button type="primary" class="pull-right">Añadir pelaje</el-button>
+                    <el-row>
+                        <el-col>
+                            <el-table
+                                    :data="pelaje"
+                                    border
+                                    style="width: 100%"
+                            >
+                                <el-table-column
+                                        prop="pelaje"
+                                        label="Pelaje"
+                                        width="180">
+                                </el-table-column>
+
+                                <el-table-column
+                                        label="Operaciones">
+                                    <template slot-scope="scope">
+                                        <el-button type="default" size="mini">Modificar</el-button>
+                                        <el-button type="danger" v-if="scope.row.activo === 'S'"  size="mini">Desactivar</el-button>
+                                        <el-button type="primary" v-else  @click="activar(scope.row.id)" size="mini">Activar</el-button>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-col>
+                    </el-row>
+
+                </div></el-col>
+            </el-row>
+        </el-main>
+
+        <el-footer>
+
+        </el-footer>
+    </el-container>
+</template>
+
+<script>
+    export default {
+        created(){
+            this.listado();
+        },
+        data() {
+            return {
+                    caracter: [],
+pelaje: []
+
+            }
+        },
+        methods: {
+            listado(){
+                axios.get('api/listadoMantenedores').then(response=>{
+                   this.caracter = response.data.caracter;
+                   this.pelaje = response.data.pelajes;
+                });
+
+            },
+            activar(id) {
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                console.log(id);
+                this.$confirm('Desea activar al gatito seleccionado ;=)?', 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/activar',{id:id}).then(responser =>{
+                        this.$message({
+                            type: 'success',
+                            message: 'Activacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Activacion Cancelada'
+                    });
+                });
+            },
+            desactivar(id) {
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                this.$confirm('Desea desactivar al gatito seleccionado ;=(?', 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/desactivar',{id:id}).then(response =>{
+                        this.$message({
+                            type: 'success',
+                            message: 'Activacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Desactivación Cancelada'
+                    });
+                });
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .el-row {
+        margin-bottom: 20px;
+    &:last-child {
+         margin-bottom: 0;
+     }
+    }
+    .el-col {
+        border-radius: 4px;
+    }
+    .bg-purple-dark {
+        background: #99a9bf;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .row-bg {
+        padding: 10px 0;
+        background-color: #f9fafc;
+    }
+</style>

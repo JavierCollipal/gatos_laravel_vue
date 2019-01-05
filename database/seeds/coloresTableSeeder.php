@@ -13,17 +13,17 @@ class coloresTableSeeder extends Seeder
     {
         //
         DB::table('colores')->insert([
-            ['color' => 'negro'],
+            ['color' => 'negro','activo'=>'S'],
 
-            ['color' => 'naranjo'],
+            ['color' => 'naranjo','activo'=>'S'],
 
-            ['color' => 'naranjoBlanco'],
+            ['color' => 'naranjoBlanco','activo'=>'S'],
 
-            ['color' => 'naranjoBlancoNegro'],
+            ['color' => 'naranjoBlancoNegro','activo'=>'S'],
 
-            ['color' => 'plomo'],
+            ['color' => 'plomo','activo'=>'S'],
 
-            ['color' => 'blanco']
+            ['color' => 'blanco','activo'=>'S']
         ]);
 
     }

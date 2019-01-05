@@ -8,6 +8,6 @@ class complexion extends Model
 {
     //
     protected $table = 'complexion';
-    protected $fillable = ['complexion'];
+    protected $fillable = ['complexion','activo'];
 
 }

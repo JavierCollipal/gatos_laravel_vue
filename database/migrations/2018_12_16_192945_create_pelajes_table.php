@@ -16,6 +16,9 @@ class CreatePelajesTable extends Migration
         Schema::create('pelajes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pelaje',100);
+            $table->string('activo',1);
+            $table->timestamps();
+
         });
     }
 

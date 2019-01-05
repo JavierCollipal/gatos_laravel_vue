@@ -14,15 +14,15 @@ class razasTableSeeder extends Seeder
     {
         //
         DB::table('razas')->insert([
-            ['raza' => 'Azul ruso'],
+            ['raza' => 'Azul ruso','activo'=>'S'],
 
-            ['raza' => 'Gato Persa'],
+            ['raza' => 'Gato Persa','activo'=>'S'],
 
-            ['raza' => 'Gato siames'],
+            ['raza' => 'Gato siames','activo'=>'S'],
 
-            ['raza' => 'Scottish Fold'],
+            ['raza' => 'Scottish Fold','activo'=>'S'],
 
-            ['raza' => 'Maine Coon']
+            ['raza' => 'Maine Coon','activo'=>'S']
 
         ]);
     }

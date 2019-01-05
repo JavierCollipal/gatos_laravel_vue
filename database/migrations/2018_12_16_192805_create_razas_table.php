@@ -17,8 +17,12 @@ class CreateRazasTable extends Migration
             //
             $table->increments('id');
             $table->string('raza',200);
+            $table->string('activo',1);
+            $table->timestamps();
 
-  });
+
+
+        });
     }
 
     /**

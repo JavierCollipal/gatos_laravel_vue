@@ -16,6 +16,8 @@ class CreateComplexionTable extends Migration
         Schema::create('complexion', function (Blueprint $table) {
             $table->increments('id');
             $table->string('complexion',100);
+            $table->string('activo',1);
+            $table->timestamps();
         });
     }
 

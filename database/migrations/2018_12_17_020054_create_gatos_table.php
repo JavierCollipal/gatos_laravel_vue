@@ -30,6 +30,7 @@ class CreateGatosTable extends Migration
             $table->foreign('id_complexion')->references('id')->on('complexion')->onUpdate('cascade');
             $table->foreign('id_caracter')->references('id')->on('caracter')->onUpdate('cascade');
             $table->foreign('id_tipo')->references('id')->on('tipo')->onUpdate('cascade');
+            $table->timestamps();
   
         });
     }

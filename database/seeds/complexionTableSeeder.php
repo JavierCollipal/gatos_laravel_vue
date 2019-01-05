@@ -13,11 +13,11 @@ class complexionTableSeeder extends Seeder
     {
         //
         DB::table('complexion')->insert([
-            ['complexion' => 'Gordito'],
+            ['complexion' => 'Gordito','activo'=>'S'],
 
-            ['complexion' => 'Flaco'],
+            ['complexion' => 'Flaco','activo'=>'S'],
 
-            ['complexion' => 'Normal']
+            ['complexion' => 'Normal','activo'=>'S']
         ]);
     }
 }

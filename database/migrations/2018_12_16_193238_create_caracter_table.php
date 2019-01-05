@@ -16,6 +16,9 @@ class CreateCaracterTable extends Migration
         Schema::create('caracter', function (Blueprint $table) {
             $table->increments('id');
             $table->string('caracter',100);
+            $table->string('activo',1);
+            $table->timestamps();
+
         });
     }
 

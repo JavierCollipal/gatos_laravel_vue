@@ -13,6 +13,7 @@ use App\Http\Controllers\GatosController;
 |
 */
 Route::get('/listado','GatosController@index');
+Route::get('/listadoMantenedores','MantenedoresController@index');
 Route::put('/activar','GatosController@activar');
 Route::put('/desactivar','GatosController@desactivar');
 Route::middleware('auth:api')->get('/user', function (Request $request) {

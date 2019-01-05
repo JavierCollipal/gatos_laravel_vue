@@ -8,5 +8,5 @@ class colores extends Model
 {
     //
     protected $table = 'colores';
-    protected $fillable = ['color'];
+    protected $fillable = ['color','activo'];
 }
