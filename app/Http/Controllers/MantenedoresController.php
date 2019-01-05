@@ -13,16 +13,16 @@ use App\complexion;
 class MantenedoresController extends Controller
 {
     public function index(){
-        $caracter=caracter::where('activo','S')->get();
-        $tipo=tipo::where('activo','S')->get();
-        $razas=razas::where('activo','S')->get();
-        $pelajes=pelajes::where('activo','S')->get();
-        $colores=colores::where('activo','S')->get();
-        $complexion=complexion::where('activo','S')->get();
+        $caracter=caracter::where('activo','S')->paginate(5);
+        $tipo=tipo::where('activo','S')->paginate(5);
+        $razas=razas::where('activo','S')->paginate(5);
+        $pelajes=pelajes::where('activo','S')->paginate(5);
+        $colores=colores::where('activo','S')->paginate(5);
+        $complexion=complexion::where('activo','S')->paginate(5);
         return ['caracter' => $caracter,
             'tipo' => $tipo,
             'razas' => $razas,
-            'pelajes' => $pelajes,
+            'pelaje' => $pelajes,
             'colores' => $colores,
             'complexion' => $complexion
             ];
