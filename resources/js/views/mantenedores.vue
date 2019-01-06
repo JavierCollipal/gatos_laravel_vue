@@ -14,12 +14,12 @@
                 <!--caracteres-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right">Añadir Caracter</el-button>
+                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Caracter'),modales.insertar = true">Añadir Caracter</el-button>
                         <el-row>
                             <el-col>
                                 <el-table
 
-                                        :data="caracter.data"
+                                        :data="caracter"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -45,11 +45,7 @@
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                                <el-pagination
-                                        small
-                                        layout="prev, pager, next"
-                                        :total="50">
-                                </el-pagination>
+
                             </el-col>
                         </el-row>
                     </div>
@@ -62,7 +58,7 @@
                             <el-col>
                                 <el-table
 
-                                        :data="pelaje.data"
+                                        :data="pelaje"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -88,11 +84,7 @@
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                                <el-pagination
-                                        small
-                                        layout="prev, pager, next"
-                                        :total="50">
-                                </el-pagination>
+
                             </el-col>
                         </el-row>
 
@@ -106,7 +98,7 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="tipo.data"
+                                        :data="tipo"
                                         border
                                         style="width: 100%"
                                 >
@@ -133,11 +125,7 @@
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                                <el-pagination
-                                        small
-                                        layout="prev, pager, next"
-                                        :total="50">
-                                </el-pagination>
+
                             </el-col>
                         </el-row>
                     </div>
@@ -148,7 +136,7 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="complexion.data"
+                                        :data="complexion"
                                         border
                                         style="width: 100%"
                                 >
@@ -176,11 +164,6 @@
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                                <el-pagination
-                                        small
-                                        layout="prev, pager, next"
-                                        :total="50">
-                                </el-pagination>
                             </el-col>
                         </el-row>
 
@@ -194,7 +177,7 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="colores.data"
+                                        :data="colores"
                                         border
                                         style="width: 100%"
                                 >
@@ -221,11 +204,6 @@
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                                <el-pagination
-                                        small
-                                        layout="prev, pager, next"
-                                        :total="50">
-                                </el-pagination>
                             </el-col>
                         </el-row>
                     </div>
@@ -236,7 +214,7 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="razas.data"
+                                        :data="razas"
                                         border
                                         style="width: 100%"
                                 >
@@ -264,16 +242,28 @@
                                         </template>
                                     </el-table-column>
                                 </el-table>
-                                <el-pagination
-                                        small
-                                        layout="prev, pager, next"
-                                        :total="50">
-                                </el-pagination>
                             </el-col>
                         </el-row>
                     </div>
                 </el-col>
             </el-row>
+<el-dialog
+        title="Registrar"
+        :visible.sync="modales.insertar"
+        width="30%"
+        center
+>
+    <el-form :inline="true"
+             :model="datosFormularios"
+             class="demo-form-inline">
+        <el-form-item v-bind:label="datosFormularios.label">
+            <el-input v-model="datosFormularios.valor"></el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-button type="primary" @click="agregarRegistros">Añadir</el-button>
+        </el-form-item>
+    </el-form>
+</el-dialog>
         </el-main>
 
         <el-footer>
@@ -289,13 +279,14 @@
         },
         data() {
             return {
-                pagination: {
-                  total: 0,
-                  current_page: 0,
-                  per_page:0,
-                  last_page:0,
-                    from: 0,
-                    to: 0
+                modales: {
+                    insertar: false
+                },
+                datosFormularios:{
+                    valor: '',
+                    label: '',
+                    tipo: '',
+
                 },
                 caracter: [],
                 pelaje: [],
@@ -307,6 +298,7 @@
         },
         methods: {
             listado() {
+
                 axios.get('api/listadoMantenedores').then(response => {
                     this.caracter = response.data.caracter;
                     this.pelaje = response.data.pelaje;
@@ -317,11 +309,11 @@
                 });
 
             },
-            activar(id) {
+            activar(categoria,id) {
                 /*primero va el mensaje*/
                 /*luego el titulo*/
                 /*para finalizar entregamos el mensaje despues del response de axios*/
-                console.log(id);
+
                 this.$confirm('Desea activar al gatito seleccionado ;=)?', 'Advertencia', {
                     confirmButtonText: 'OK',
                     cancelButtonText: 'Cancel',
@@ -363,6 +355,30 @@
                         message: 'Desactivación Cancelada'
                     });
                 });
+            },
+            agregarRegistros(){
+
+                let rutaAPI = '';
+                console.log(this.datosFormularios.tipo);
+                switch (this.datosFormularios.tipo) {
+                    case  'Caracter':
+                        rutaAPI = 'agregarCaracter';
+                        break;
+                    case  'Pelaje':
+                        rutaAPI = 'agregarPelaje';
+                        break;
+                }
+                axios.post('api/'+rutaAPI,{
+                    valor: this.datosFormularios.valor
+                }).then(response => {
+                    this.listado();
+                }).catch(errors =>{
+
+                });
+            },
+            crearFormulario(tipo){
+              this.datosFormularios.label = tipo;
+                this.datosFormularios.tipo = tipo;
             }
         }
     }

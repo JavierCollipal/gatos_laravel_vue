@@ -12,19 +12,37 @@ use App\complexion;
 
 class MantenedoresController extends Controller
 {
-    public function index(){
-        $caracter=caracter::where('activo','S')->paginate(5);
-        $tipo=tipo::where('activo','S')->paginate(5);
-        $razas=razas::where('activo','S')->paginate(5);
-        $pelajes=pelajes::where('activo','S')->paginate(5);
-        $colores=colores::where('activo','S')->paginate(5);
-        $complexion=complexion::where('activo','S')->paginate(5);
+    public function index()
+    {
+        $caracter = caracter::where('activo', 'S')->get();
+        $tipo = tipo::where('activo', 'S')->get();
+        $razas = razas::where('activo', 'S')->get();
+        $pelajes = pelajes::where('activo', 'S')->get();
+        $colores = colores::where('activo', 'S')->get();
+        $complexion = complexion::where('activo', 'S')->get();
         return ['caracter' => $caracter,
             'tipo' => $tipo,
             'razas' => $razas,
             'pelaje' => $pelajes,
             'colores' => $colores,
             'complexion' => $complexion
-            ];
+        ];
+    }
+
+    public function agregarCaracter(Request $request)
+    {
+        $caracter = caracter::firstOrCreate(['caracter' => $request->valor,'activo' => 'S']);
+        if($caracter->wasRecentlyCreated){
+            $respuesta = true;
+            return ['respuesta' => $respuesta];
+        }else{
+            $respuesta = false;
+            return ['respuesta' => $respuesta];
+        };
+    }
+
+    public function agregarPelaje(Request $request)
+    {
+
     }
 }
