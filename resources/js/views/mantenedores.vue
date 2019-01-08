@@ -359,7 +359,6 @@
             agregarRegistros(){
 
                 let rutaAPI = '';
-                console.log(this.datosFormularios.tipo);
                 switch (this.datosFormularios.tipo) {
                     case  'Caracter':
                         rutaAPI = 'agregarCaracter';
@@ -371,9 +370,18 @@
                 axios.post('api/'+rutaAPI,{
                     valor: this.datosFormularios.valor
                 }).then(response => {
+                    this.modales.insertar = false;
+                    this.$message({
+                        message: response.data.mensaje,
+                        type: 'succes'
+                    });
                     this.listado();
-                }).catch(errors =>{
-
+                }).catch(error =>{
+                    this.modales.insertar = false;
+                    this.$message({
+                        message: error.response.data.mensaje,
+                        type: 'warning'
+                    });
                 });
             },
             crearFormulario(tipo){

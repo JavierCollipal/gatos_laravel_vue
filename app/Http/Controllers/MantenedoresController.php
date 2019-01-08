@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Response;
 use Illuminate\Http\Request;
 use App\caracter;
 use App\tipo;
@@ -33,16 +33,20 @@ class MantenedoresController extends Controller
     {
         $caracter = caracter::firstOrCreate(['caracter' => $request->valor,'activo' => 'S']);
         if($caracter->wasRecentlyCreated){
-            $respuesta = true;
-            return ['respuesta' => $respuesta];
+            return Response::json(['mensaje' => 'Caracter creado correctamente'],200);
         }else{
-            $respuesta = false;
-            return ['respuesta' => $respuesta];
+            return Response::json(['mensaje' => 'El caracter ya se encuentra registrado'],400);
         };
     }
 
     public function agregarPelaje(Request $request)
     {
+        $pelaje = pelajes::firstOrCreate(['pelaje' => $request->valor,'activo' => 'S']);
+        if($pelaje->wasRecentlyCreated){
+            return Response::json(['mensaje' => 'Pelaje creado correctamente'],200);
+        }else{
+            return Response::json(['mensaje' => 'El pelaje ya se encuentra registrado'],422);
+        };
 
     }
 }
