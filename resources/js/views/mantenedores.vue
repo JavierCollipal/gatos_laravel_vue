@@ -14,12 +14,15 @@
                 <!--caracteres-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Caracter'),modales.insertar = true">Añadir Caracter</el-button>
                         <el-row>
+                            <el-button type="primary" class="pull-right"
+                                       v-on:click="crearFormulario('Caracter'),modales.insertar = true">Añadir Caracter
+                            </el-button>
                             <el-col>
                                 <el-table
 
                                         :data="caracter"
+                                        height="250"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -53,12 +56,14 @@
                 <!--pelajes-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right">Añadir pelaje</el-button>
+                        <el-button type="primary" class="pull-right"
+                                   v-on:click="crearFormulario('Pelaje'),modales.insertar = true">Añadir pelaje
+                        </el-button>
                         <el-row>
                             <el-col>
                                 <el-table
-
                                         :data="pelaje"
+                                        height="250"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -92,14 +97,18 @@
                 </el-col>
             </el-row>
             <el-row :gutter="20">
+                <!--tipos-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right">Añadir tipo</el-button>
+                        <el-button type="primary" class="pull-right"
+                                   v-on:click="crearFormulario('Tipo'),modales.insertar = true">Añadir tipo
+                        </el-button>
                         <el-row>
                             <el-col>
                                 <el-table
                                         :data="tipo"
                                         border
+                                        height="250"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -130,14 +139,16 @@
                         </el-row>
                     </div>
                 </el-col>
+                <!--complexion-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right">Añadir complexion</el-button>
+                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Complexion'),modales.insertar = true">Añadir complexion</el-button>
                         <el-row>
                             <el-col>
                                 <el-table
                                         :data="complexion"
                                         border
+                                        height="250"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -171,14 +182,16 @@
                 </el-col>
             </el-row>
             <el-row :gutter="20">
+                <!--color-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right">Añadir color</el-button>
+                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Color'),modales.insertar = true">Añadir color</el-button>
                         <el-row>
                             <el-col>
                                 <el-table
                                         :data="colores"
                                         border
+                                        height="250"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -208,14 +221,16 @@
                         </el-row>
                     </div>
                 </el-col>
+                <!--raza-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right">Añadir raza</el-button>
+                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Raza'),modales.insertar = true">Añadir raza</el-button>
                         <el-row>
                             <el-col>
                                 <el-table
                                         :data="razas"
                                         border
+                                        height="250"
                                         style="width: 100%"
                                 >
                                     <el-table-column
@@ -247,23 +262,23 @@
                     </div>
                 </el-col>
             </el-row>
-<el-dialog
-        title="Registrar"
-        :visible.sync="modales.insertar"
-        width="30%"
-        center
->
-    <el-form :inline="true"
-             :model="datosFormularios"
-             class="demo-form-inline">
-        <el-form-item v-bind:label="datosFormularios.label">
-            <el-input v-model="datosFormularios.valor"></el-input>
-        </el-form-item>
-        <el-form-item>
-            <el-button type="primary" @click="agregarRegistros">Añadir</el-button>
-        </el-form-item>
-    </el-form>
-</el-dialog>
+            <el-dialog
+                    v-bind:title="'Registrar'+' '+datosFormularios.label"
+                    :visible.sync="modales.insertar"
+                    width="30%"
+                    center
+            >
+                <el-form :inline="true"
+                         :model="datosFormularios"
+                         class="demo-form-inline">
+                    <el-form-item v-bind:label="datosFormularios.label">
+                        <el-input v-model="datosFormularios.valor"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="agregarRegistros">Añadir</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-dialog>
         </el-main>
 
         <el-footer>
@@ -282,7 +297,7 @@
                 modales: {
                     insertar: false
                 },
-                datosFormularios:{
+                datosFormularios: {
                     valor: '',
                     label: '',
                     tipo: '',
@@ -319,7 +334,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/activar', {id: id}).then(responser => {
+                    axios.put('api/activarSeleccionado', {categoria: categoria,id: id}).then(response => {
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'
@@ -333,7 +348,7 @@
                     });
                 });
             },
-            desactivar(id) {
+            desactivar(categoria,id) {
                 /*primero va el mensaje*/
                 /*luego el titulo*/
                 /*para finalizar entregamos el mensaje despues del response de axios*/
@@ -342,7 +357,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/desactivar', {id: id}).then(response => {
+                    axios.put('api/desactivarSeleccionado', {categoria: categoria,id: id}).then(response => {
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'
@@ -356,37 +371,58 @@
                     });
                 });
             },
-            agregarRegistros(){
+            agregarRegistros() {
 
                 let rutaAPI = '';
                 switch (this.datosFormularios.tipo) {
                     case  'Caracter':
                         rutaAPI = 'agregarCaracter';
                         break;
+                    case  'Color':
+                        rutaAPI = 'agregarColor';
+                        break;
+                    case  'Complexion':
+                        rutaAPI = 'agregarComplexion';
+                        break;
+                    case  'Tipo':
+                        rutaAPI = 'agregarTipo';
+                        break;
+                    case  'Raza':
+                        rutaAPI = 'agregarRaza';
+                        break;
                     case  'Pelaje':
                         rutaAPI = 'agregarPelaje';
                         break;
+
                 }
-                axios.post('api/'+rutaAPI,{
+                axios.post('api/' + rutaAPI, {
                     valor: this.datosFormularios.valor
                 }).then(response => {
+                    this.datosFormularios.valor = '';
                     this.modales.insertar = false;
                     this.$message({
                         message: response.data.mensaje,
                         type: 'succes'
                     });
                     this.listado();
-                }).catch(error =>{
+                }).catch(error => {
+                    this.datosFormularios.valor = '';
                     this.modales.insertar = false;
                     this.$message({
                         message: error.response.data.mensaje,
-                        type: 'warning'
+                        type: 'error'
                     });
                 });
             },
-            crearFormulario(tipo){
-              this.datosFormularios.label = tipo;
+            crearFormulario(tipo) {
+                this.datosFormularios.label = tipo;
                 this.datosFormularios.tipo = tipo;
+            },
+            activarSeleccionado(){
+
+            },
+            desactivarSeleccionado(){
+
             }
         }
     }

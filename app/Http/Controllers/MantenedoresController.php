@@ -45,8 +45,60 @@ class MantenedoresController extends Controller
         if($pelaje->wasRecentlyCreated){
             return Response::json(['mensaje' => 'Pelaje creado correctamente'],200);
         }else{
-            return Response::json(['mensaje' => 'El pelaje ya se encuentra registrado'],422);
+            return Response::json(['mensaje' => 'El pelaje ya se encuentra registrado'],400);
         };
 
     }
+
+    public function agregarColor(Request $request)
+    {
+        $color = colores::firstOrCreate(['color' => $request->valor,'activo' => 'S']);
+        if($color->wasRecentlyCreated){
+            return Response::json(['mensaje' => 'Color creado correctamente'],200);
+        }else{
+            return Response::json(['mensaje' => 'El Color ya se encuentra registrado'],400);
+        };
+
+    }
+
+    public function agregarRaza(Request $request)
+    {
+        $color = razas::firstOrCreate(['raza' => $request->valor,'activo' => 'S']);
+        if($color->wasRecentlyCreated){
+            return Response::json(['mensaje' => 'Raza creado correctamente'],200);
+        }else{
+            return Response::json(['mensaje' => 'La Raza ya se encuentra registrado'],400);
+        };
+
+    }
+
+    public function agregarComplexion(Request $request)
+    {
+        $color = complexion::firstOrCreate(['complexion' => $request->valor,'activo' => 'S']);
+        if($color->wasRecentlyCreated){
+            return Response::json(['mensaje' => 'Complexion creado correctamente'],200);
+        }else{
+            return Response::json(['mensaje' => 'La Complexion ya se encuentra registrado'],400);
+        };
+
+    }
+
+    public function agregarTipo(Request $request)
+    {
+        $color = tipo::firstOrCreate(['tipo' => $request->valor,'activo' => 'S']);
+        if($color->wasRecentlyCreated){
+            return Response::json(['mensaje' => 'Tipo creado correctamente'],200);
+        }else{
+            return Response::json(['mensaje' => 'El Tipo ya se encuentra registrado'],400);
+        };
+
+    }
+
+    public function activarSeleccionado(){
+
+    }
+    public function desactivarSeleccionado(){
+
+    }
+
 }

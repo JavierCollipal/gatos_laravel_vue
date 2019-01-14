@@ -16,6 +16,12 @@ Route::get('/listado','GatosController@index');
 Route::get('/listadoMantenedores','MantenedoresController@index');
 Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');
 Route::post('/agregarPelaje','MantenedoresController@agregarPelaje');
+Route::post('/agregarColor','MantenedoresController@agregarColor');
+Route::post('/agregarRaza','MantenedoresController@agregarRaza');
+Route::post('/agregarComplexion','MantenedoresController@agregarComplexion');
+Route::post('/agregarTipo','MantenedoresController@agregarTipo');
+Route::put('/activarSeleccionado','MantenedoresController@activarSeleccionado');
+Route::put('/desactivarSeleccionado','MantenedoresController@desactivarSeleccionado');
 Route::put('/activar','GatosController@activar');
 Route::put('/desactivar','GatosController@desactivar');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
