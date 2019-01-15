@@ -10,6 +10,7 @@
         </el-header>
 
         <el-main>
+            <!--caracteres/pelajes-->
             <el-row :gutter="20">
                 <!--caracteres-->
                 <el-col :span="12">
@@ -39,10 +40,10 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger"  @click="desactivarSeleccionado('caracter',scope.row.id)" v-if="scope.row.activo === 'S'" size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else @click="activarSeleccionado('caracter',scope.row.id)" size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -80,10 +81,18 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button
+                                                    @click="activarSeleccionado('pelaje',scope.row.id)"
+                                                    type="danger"
+                                                    v-if="scope.row.activo === 'S'"
+                                                    size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button
+                                                    type="primary"
+                                                    v-else
+                                                    @click="desactivarSeleccionado('pelaje',scope.row.id)"
+                                                    size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -96,6 +105,7 @@
                     </div>
                 </el-col>
             </el-row>
+            <!--tipos/complexion-->
             <el-row :gutter="20">
                 <!--tipos-->
                 <el-col :span="12">
@@ -125,10 +135,13 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger"
+                                                       v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('tipo',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else @click="activarSeleccionado('tipo',scope.row.id)" size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -142,7 +155,9 @@
                 <!--complexion-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Complexion'),modales.insertar = true">Añadir complexion</el-button>
+                        <el-button type="primary" class="pull-right"
+                                   v-on:click="crearFormulario('Complexion'),modales.insertar = true">Añadir complexion
+                        </el-button>
                         <el-row>
                             <el-col>
                                 <el-table
@@ -166,10 +181,17 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button
+                                                    @click="desactivarSeleccionado('complexion',scope.row.id)"
+                                                    type="danger"
+                                                       v-if="scope.row.activo === 'S'"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary"
+                                                       v-else
+                                                       @click="activarSeleccionado('complexion',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -181,11 +203,14 @@
                     </div>
                 </el-col>
             </el-row>
+            <!--color/raza-->
             <el-row :gutter="20">
                 <!--color-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Color'),modales.insertar = true">Añadir color</el-button>
+                        <el-button type="primary" class="pull-right"
+                                   v-on:click="crearFormulario('Color'),modales.insertar = true">Añadir color
+                        </el-button>
                         <el-row>
                             <el-col>
                                 <el-table
@@ -208,10 +233,16 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger"
+                                                       @click="desactivarSeleccionado('color',scope.row.id)"
+                                                       v-if="scope.row.activo === 'S'"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary"
+                                                       v-else
+                                                       @click="activarSeleccionado('color',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -224,7 +255,9 @@
                 <!--raza-->
                 <el-col :span="12">
                     <div class="grid-content bg-purple">
-                        <el-button type="primary" class="pull-right" v-on:click="crearFormulario('Raza'),modales.insertar = true">Añadir raza</el-button>
+                        <el-button type="primary" class="pull-right"
+                                   v-on:click="crearFormulario('Raza'),modales.insertar = true">Añadir raza
+                        </el-button>
                         <el-row>
                             <el-col>
                                 <el-table
@@ -248,10 +281,16 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger"
+                                                       @click="desactivarSeleccionado('raza',scope.row.id)"
+                                                       v-if="scope.row.activo === 'S'"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary"
+                                                       v-else
+                                                       @click="activarSeleccionado('raza',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -324,53 +363,6 @@
                 });
 
             },
-            activar(categoria,id) {
-                /*primero va el mensaje*/
-                /*luego el titulo*/
-                /*para finalizar entregamos el mensaje despues del response de axios*/
-
-                this.$confirm('Desea activar al gatito seleccionado ;=)?', 'Advertencia', {
-                    confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancel',
-                    type: 'warning'
-                }).then(() => {
-                    axios.put('api/activarSeleccionado', {categoria: categoria,id: id}).then(response => {
-                        this.$message({
-                            type: 'success',
-                            message: 'Activacion completada'
-                        });
-                        this.listado();
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: 'Activacion Cancelada'
-                    });
-                });
-            },
-            desactivar(categoria,id) {
-                /*primero va el mensaje*/
-                /*luego el titulo*/
-                /*para finalizar entregamos el mensaje despues del response de axios*/
-                this.$confirm('Desea desactivar al gatito seleccionado ;=(?', 'Advertencia', {
-                    confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancel',
-                    type: 'warning'
-                }).then(() => {
-                    axios.put('api/desactivarSeleccionado', {categoria: categoria,id: id}).then(response => {
-                        this.$message({
-                            type: 'success',
-                            message: 'Activacion completada'
-                        });
-                        this.listado();
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: 'Desactivación Cancelada'
-                    });
-                });
-            },
             agregarRegistros() {
 
                 let rutaAPI = '';
@@ -418,11 +410,65 @@
                 this.datosFormularios.label = tipo;
                 this.datosFormularios.tipo = tipo;
             },
-            activarSeleccionado(){
-
+            activarSeleccionado(categoria, id) {
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                let articuloGramatico =  'el';
+                let seleccionado = 'seleccionado';
+                if(categoria === 'raza'){
+                    articuloGramatico = 'la';
+                    seleccionado = 'seleccionada';
+                }
+                let string_Categoria = categoria;
+                this.$confirm('Desea activar '+articuloGramatico+' '+string_Categoria+' '+ seleccionado, 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancelar',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/activarSeleccionado', {categoria: categoria, id: id}).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: 'Activacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Activacion Cancelada'
+                    });
+                });
             },
-            desactivarSeleccionado(){
-
+            desactivarSeleccionado(categoria, id) {
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                let articuloGramatico =  'el';
+                let seleccionado = 'seleccionado';
+                if(categoria === 'raza'){
+                    articuloGramatico = 'la';
+                    seleccionado = 'seleccionada';
+                }
+                let string_Categoria = categoria;
+                this.$confirm('Desea desactivar '+articuloGramatico+' '+string_Categoria+' '+ seleccionado, 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancelar',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/activarSeleccionado', {categoria: categoria, id: id}).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: 'Desactivacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Desactivacion Cancelada'
+                    });
+                });
             }
         }
     }
