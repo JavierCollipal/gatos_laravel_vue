@@ -10,6 +10,7 @@
         </el-header>
 
         <el-main>
+            <!--caracter/pelajes-->
             <el-row :gutter="20">
                 <!--caracteres-->
                 <el-col :span="12">
@@ -39,10 +40,12 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('caracter',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else @click="activarSeleccionado('caracter',scope.row.id)" size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -80,10 +83,14 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('pelaje',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('pelaje',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -96,6 +103,7 @@
                     </div>
                 </el-col>
             </el-row>
+            <!--tipo/complexion-->
             <el-row :gutter="20">
                 <!--tipos-->
                 <el-col :span="12">
@@ -125,10 +133,14 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('tipo',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('tipo',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -166,10 +178,14 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('complexion',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('complexion',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -181,6 +197,7 @@
                     </div>
                 </el-col>
             </el-row>
+            <!--color/raza-->
             <el-row :gutter="20">
                 <!--color-->
                 <el-col :span="12">
@@ -208,10 +225,14 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('color',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('color',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -248,10 +269,14 @@
                                             label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('raza',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activar(scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('raza',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -324,53 +349,6 @@
                 });
 
             },
-            activar(categoria,id) {
-                /*primero va el mensaje*/
-                /*luego el titulo*/
-                /*para finalizar entregamos el mensaje despues del response de axios*/
-
-                this.$confirm('Desea activar al gatito seleccionado ;=)?', 'Advertencia', {
-                    confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancel',
-                    type: 'warning'
-                }).then(() => {
-                    axios.put('api/activarSeleccionado', {categoria: categoria,id: id}).then(response => {
-                        this.$message({
-                            type: 'success',
-                            message: 'Activacion completada'
-                        });
-                        this.listado();
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: 'Activacion Cancelada'
-                    });
-                });
-            },
-            desactivar(categoria,id) {
-                /*primero va el mensaje*/
-                /*luego el titulo*/
-                /*para finalizar entregamos el mensaje despues del response de axios*/
-                this.$confirm('Desea desactivar al gatito seleccionado ;=(?', 'Advertencia', {
-                    confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancel',
-                    type: 'warning'
-                }).then(() => {
-                    axios.put('api/desactivarSeleccionado', {categoria: categoria,id: id}).then(response => {
-                        this.$message({
-                            type: 'success',
-                            message: 'Activacion completada'
-                        });
-                        this.listado();
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: 'Desactivación Cancelada'
-                    });
-                });
-            },
             agregarRegistros() {
 
                 let rutaAPI = '';
@@ -418,11 +396,63 @@
                 this.datosFormularios.label = tipo;
                 this.datosFormularios.tipo = tipo;
             },
-            activarSeleccionado(){
-
+            activarSeleccionado(categoria,id){
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                let articulo = 'el';
+                let seleccionado = 'seleccionado';
+                if(articulo === 'raza'){
+                    articulo = 'la';
+                    seleccionado = 'seleccionada';
+                }
+                this.$confirm('Desea activar '+ articulo + ' ' +categoria + ' '+ seleccionado, 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/activarSeleccionado', {categoria: categoria,id: id}).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: 'Activacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Activacion Cancelada'
+                    });
+                });
             },
-            desactivarSeleccionado(){
-
+            desactivarSeleccionado(categoria,id){
+                /*primero va el mensaje*/
+                /*luego el titulo*/
+                /*para finalizar entregamos el mensaje despues del response de axios*/
+                let articulo = 'el';
+                let seleccionado = 'seleccionado';
+                if(articulo === 'raza'){
+                    articulo = 'la';
+                    seleccionado = 'seleccionada';
+                }
+                this.$confirm('Desea desactivar '+ articulo + ' ' +categoria + ' '+ seleccionado, 'Advertencia', {
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    axios.put('api/desactivarSeleccionado', {categoria: categoria,id: id}).then(response => {
+                        this.$message({
+                            type: 'success',
+                            message: 'Desactivacion completada'
+                        });
+                        this.listado();
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: 'Desactivacion Cancelada'
+                    });
+                });
             }
         }
     }
