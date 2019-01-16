@@ -120,35 +120,35 @@ class MantenedoresController extends Controller
         return Response::json(['seleccionado' => $categoria]);
     }
 
-    public function modificarSeleccionado(Request $request){
+    public function actualizarSeleccionado(Request $request){
         switch ($request->categoria) {
-            case 'raza':
+            case 'Raza':
                 $categoria = razas::findorFail($request->id);
                 $categoria->raza = $request->valor;
                 $categoria->save();
                 break;
-            case 'tipo':
+            case 'Tipo':
                 $categoria = tipo::findorFail($request->id);
                 $categoria->tipo = $request->valor;
                 $categoria->save();
                 break;
-            case 'color':
+            case 'Color':
                 $categoria = colores::findorFail($request->id);
                 $categoria->color = $request->valor;
                 $categoria->save();
                 break;
-            case 'complexion':
+            case 'Complexion':
                 $categoria = complexion::findorFail($request->id);
                 $categoria->complexion = $request->valor;
                 $categoria->save();
 
                 break;
-            case 'caracter':
+            case 'Caracter':
                 $categoria = caracter::findorFail($request->id);
                 $categoria->caracter = $request->valor;
                 $categoria->save();
                 break;
-            case 'pelaje':
+            case 'Pelaje':
                 $categoria = pelajes::findorFail($request->id);
                 $categoria->pelaje = $request->valor;
                 $categoria->save();

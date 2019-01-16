@@ -309,7 +309,10 @@
                          :model="datosFormularios"
                          class="demo-form-inline">
                     <el-form-item v-bind:label="datosFormularios.label">
-                        <el-input v-model="datosFormularios.valor"></el-input>
+                        <el-input v-model="datosFormularios.valor"
+                                  type="text"
+                                  maxlength="100"
+                        ></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="agregarRegistros">Añadir</el-button>
@@ -328,10 +331,13 @@
                          class="demo-form-inline">
 
                     <el-form-item v-bind:label="formularioModificar.label">
-                        <el-input v-model="formularioModificar.valor"></el-input>
+                        <el-input
+                            type="text"
+                            maxlength="100"
+                            v-model="formularioModificar.valor"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="agregarRegistros">Añadir</el-button>
+                        <el-button type="primary" @click="actualizarSeleccionado">Actualizar</el-button>
                     </el-form-item>
                 </el-form>
             </el-dialog>
@@ -462,6 +468,48 @@
 
                             }
                             this.modales.modificar = true;
+                        }
+                    )
+
+            },
+            actualizarSeleccionado() {
+                axios.put('api/actualizarSeleccionado',
+                    {
+                        categoria: this.formularioModificar.label,
+                        id: this.formularioModificar.id,
+                        valor: this.formularioModificar.valor
+                    })
+                    .then(
+                        response => {
+                            /*switch (categoria) {
+                                case 'Raza':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.raza;
+                                    break;
+                                case 'Tipo':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.tipo;
+                                    break;
+                                case 'Color':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.color;
+                                    break;
+                                case 'Complexion':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.complexion;
+                                    break;
+                                case 'Caracter':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.caracter;
+                                    break;
+                                case 'Pelaje':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.pelaje;
+                                    break;
+
+                            }*/
+                            this.modales.modificar = false;
+                            this.listado();
                         }
                     )
 
