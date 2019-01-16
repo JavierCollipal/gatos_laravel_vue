@@ -95,6 +95,68 @@ class MantenedoresController extends Controller
 
     }
 
+    public function solicitarSeleccionado(Request $request){
+
+        switch ($request->categoria) {
+            case 'Raza':
+                $categoria = razas::findorFail($request->id);
+                break;
+            case 'Tipo':
+                $categoria = tipo::findorFail($request->id);
+                break;
+            case 'Color':
+                $categoria = colores::findorFail($request->id);
+                break;
+            case 'Complexion':
+                $categoria = complexion::findorFail($request->id);
+                break;
+            case 'Caracter':
+                $categoria = caracter::findorFail($request->id);
+                break;
+            case 'Pelaje':
+                $categoria = pelajes::findorFail($request->id);
+                break;
+         }
+        return Response::json(['seleccionado' => $categoria]);
+    }
+
+    public function modificarSeleccionado(Request $request){
+        switch ($request->categoria) {
+            case 'raza':
+                $categoria = razas::findorFail($request->id);
+                $categoria->raza = $request->valor;
+                $categoria->save();
+                break;
+            case 'tipo':
+                $categoria = tipo::findorFail($request->id);
+                $categoria->tipo = $request->valor;
+                $categoria->save();
+                break;
+            case 'color':
+                $categoria = colores::findorFail($request->id);
+                $categoria->color = $request->valor;
+                $categoria->save();
+                break;
+            case 'complexion':
+                $categoria = complexion::findorFail($request->id);
+                $categoria->complexion = $request->valor;
+                $categoria->save();
+
+                break;
+            case 'caracter':
+                $categoria = caracter::findorFail($request->id);
+                $categoria->caracter = $request->valor;
+                $categoria->save();
+                break;
+            case 'pelaje':
+                $categoria = pelajes::findorFail($request->id);
+                $categoria->pelaje = $request->valor;
+                $categoria->save();
+
+                break;
+        }
+    }
+
     public function activarSeleccionado(Request $request)
     {
         switch ($request->categoria) {
@@ -122,7 +184,6 @@ class MantenedoresController extends Controller
         }
         $categoria->activo = 'S';
         $categoria->save();
-
     }
 
     public function desactivarSeleccionado(Request $request)
