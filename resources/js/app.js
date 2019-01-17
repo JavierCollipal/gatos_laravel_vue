@@ -24,7 +24,7 @@ import ElementUI from 'element-ui';
 import Vue from 'vue'
 import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
-import VeeElement from './vee-element';
+import VeeElement from 'vee-element';
 import App from './views/App';
 import Bienvenido from './views/bienvenido';
 import Hijo from './views/hijo';
