@@ -381,7 +381,12 @@
         },
         methods: {
             listado() {
-
+                const loading = this.$loading({
+                    lock: true,
+                    text: 'Obteniendo registros',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
                 axios.get('api/listadoMantenedores').then(response => {
                     this.caracter = response.data.caracter;
                     this.pelaje = response.data.pelaje;
@@ -389,6 +394,7 @@
                     this.complexion = response.data.complexion;
                     this.colores = response.data.colores;
                     this.razas = response.data.razas;
+                    loading.close();
                 });
 
             },
@@ -473,6 +479,7 @@
 
             },
             actualizarSeleccionado() {
+
                 axios.put('api/actualizarSeleccionado',
                     {
                         categoria: this.formularioModificar.label,
@@ -509,6 +516,11 @@
 
                             }*/
                             this.modales.modificar = false;
+                            this.$message({
+                                message: 'Actualizacion exitosa',
+                                type: 'succes'
+
+                            });
                             this.listado();
                         }
                     )
