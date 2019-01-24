@@ -15,12 +15,12 @@ class MantenedoresController extends Controller
 {
     public function index()
     {
-        $caracter = caracter::where('activo', 'S')->get();
-        $tipo = tipo::where('activo', 'S')->get();
-        $razas = razas::where('activo', 'S')->get();
-        $pelajes = pelajes::where('activo', 'S')->get();
-        $colores = colores::where('activo', 'S')->get();
-        $complexion = complexion::where('activo', 'S')->get();
+        $caracter = caracter::get();
+        $tipo = tipo::get();
+        $razas = razas::get();
+        $pelajes = pelajes::get();
+        $colores = colores::get();
+        $complexion = complexion::get();
         return ['caracter' => $caracter,
             'tipo' => $tipo,
             'razas' => $razas,
@@ -95,33 +95,91 @@ class MantenedoresController extends Controller
 
     }
 
-    public function activarSeleccionado(Request $request)
-    {
+    public function solicitarSeleccionado(Request $request){
 
         switch ($request->categoria) {
+            case 'Raza':
+                $categoria = razas::findorFail($request->id);
+                break;
+            case 'Tipo':
+                $categoria = tipo::findorFail($request->id);
+                break;
+            case 'Color':
+                $categoria = colores::findorFail($request->id);
+                break;
+            case 'Complexion':
+                $categoria = complexion::findorFail($request->id);
+                break;
+            case 'Caracter':
+                $categoria = caracter::findorFail($request->id);
+                break;
+            case 'Pelaje':
+                $categoria = pelajes::findorFail($request->id);
+                break;
+         }
+        return Response::json(['seleccionado' => $categoria]);
+    }
+
+    public function actualizarSeleccionado(Request $request){
+        switch ($request->categoria) {
+            case 'Raza':
+                $categoria = razas::findorFail($request->id);
+                $categoria->raza = $request->valor;
+                $categoria->save();
+                break;
+            case 'Tipo':
+                $categoria = tipo::findorFail($request->id);
+                $categoria->tipo = $request->valor;
+                $categoria->save();
+                break;
+            case 'Color':
+                $categoria = colores::findorFail($request->id);
+                $categoria->color = $request->valor;
+                $categoria->save();
+                break;
+            case 'Complexion':
+                $categoria = complexion::findorFail($request->id);
+                $categoria->complexion = $request->valor;
+                $categoria->save();
+
+                break;
+            case 'Caracter':
+                $categoria = caracter::findorFail($request->id);
+                $categoria->caracter = $request->valor;
+                $categoria->save();
+                break;
+            case 'Pelaje':
+                $categoria = pelajes::findorFail($request->id);
+                $categoria->pelaje = $request->valor;
+                $categoria->save();
+
+                break;
+        }
+    }
+
+    public function activarSeleccionado(Request $request)
+    {
+        switch ($request->categoria) {
+            case 'raza':
+                $categoria = razas::findorFail($request->id);
+
+                break;
+            case 'tipo':
+                $categoria = tipo::findorFail($request->id);
+
+                break;
+            case 'color':
+                $categoria = colores::findorFail($request->id);
+                break;
+            case 'complexion':
+                $categoria = complexion::findorFail($request->id);
+                break;
             case 'caracter':
                 $categoria = caracter::findorFail($request->id);
                 break;
             case 'pelaje':
                 $categoria = pelajes::findorFail($request->id);
                 break;
-
-            case 'tipo':
-                $categoria = tipo::findorFail($request->id);
-                break;
-
-            case 'complexion':
-                $categoria = complexion::findorFail($request->id);
-                break;
-
-            case 'color':
-                $categoria = colores::findorFail($request->id);
-                break;
-
-            case 'raza':
-                $categoria = razas::findorFail($request->id);
-                break;
-
 
         }
         $categoria->activo = 'S';
@@ -131,34 +189,33 @@ class MantenedoresController extends Controller
     public function desactivarSeleccionado(Request $request)
     {
         switch ($request->categoria) {
-            case 'caracter':
-                $categoria = caracter::findorFail($request->id);
-                break;
-            case 'pelaje':
-                $categoria = pelajes::findorFail($request->id);
-                break;
+            case 'raza':
+                $categoria = razas::findorFail($request->id);
 
+                break;
             case 'tipo':
                 $categoria = tipo::findorFail($request->id);
-                break;
 
-            case 'complexion':
-                $categoria = complexion::findorFail($request->id);
                 break;
 
             case 'color':
                 $categoria = colores::findorFail($request->id);
                 break;
 
-            case 'raza':
-                $categoria = razas::findorFail($request->id);
+            case 'complexion':
+                $categoria = complexion::findorFail($request->id);
                 break;
 
+            case 'caracter':
+                $categoria = caracter::findorFail($request->id);
+                break;
 
+            case 'pelaje':
+                $categoria = pelajes::findorFail($request->id);
+                break;
         }
         $categoria->activo = 'N';
         $categoria->save();
 
     }
-
 }

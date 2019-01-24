@@ -10,7 +10,7 @@
         </el-header>
 
         <el-main>
-            <!--caracteres/pelajes-->
+            <!--caracter/pelajes-->
             <el-row :gutter="20">
                 <!--caracteres-->
                 <el-col :span="12">
@@ -22,28 +22,35 @@
                             <el-col>
                                 <el-table
 
-                                        :data="caracter"
-                                        height="250"
-                                        style="width: 100%"
+                                    :data="caracter"
+                                    height="250"
+                                    style="width: 100%"
                                 >
                                     <el-table-column
-                                            prop="caracter"
-                                            label="Caracter"
-                                            width="180">
+                                        prop="caracter"
+                                        label="Caracter"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="activo"
-                                            label="Activo"
-                                            width="180">
+                                        prop="activo"
+                                        label="Activo"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            label="Operaciones">
+                                        label="Operaciones">
                                         <template slot-scope="scope">
-                                            <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger"  @click="desactivarSeleccionado('caracter',scope.row.id)" v-if="scope.row.activo === 'S'" size="mini">
+                                            <el-button type="default"
+                                                       @click="solicitarSeleccionado('Caracter',scope.row.id)"
+                                                       size="mini">Modificar
+                                            </el-button>
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('caracter',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activarSeleccionado('caracter',scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('caracter',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -63,36 +70,32 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="pelaje"
-                                        height="250"
-                                        style="width: 100%"
+                                    :data="pelaje"
+                                    height="250"
+                                    style="width: 100%"
                                 >
                                     <el-table-column
-                                            prop="pelaje"
-                                            label="Pelaje"
-                                            width="180">
+                                        prop="pelaje"
+                                        label="Pelaje"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="activo"
-                                            label="Activo"
-                                            width="180">
+                                        prop="activo"
+                                        label="Activo"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            label="Operaciones">
+                                        label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button
-                                                    @click="activarSeleccionado('pelaje',scope.row.id)"
-                                                    type="danger"
-                                                    v-if="scope.row.activo === 'S'"
-                                                    size="mini">
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('pelaje',scope.row.id)"
+                                                       size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button
-                                                    type="primary"
-                                                    v-else
-                                                    @click="desactivarSeleccionado('pelaje',scope.row.id)"
-                                                    size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('pelaje',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -105,7 +108,7 @@
                     </div>
                 </el-col>
             </el-row>
-            <!--tipos/complexion-->
+            <!--tipo/complexion-->
             <el-row :gutter="20">
                 <!--tipos-->
                 <el-col :span="12">
@@ -116,32 +119,33 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="tipo"
-                                        border
-                                        height="250"
-                                        style="width: 100%"
+                                    :data="tipo"
+                                    border
+                                    height="250"
+                                    style="width: 100%"
                                 >
                                     <el-table-column
-                                            prop="tipo"
-                                            label="Tipo"
-                                            width="180">
+                                        prop="tipo"
+                                        label="Tipo"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="activo"
-                                            label="Activo"
-                                            width="180">
+                                        prop="activo"
+                                        label="Activo"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            label="Operaciones">
+                                        label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger"
-                                                       v-if="scope.row.activo === 'S'"
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
                                                        @click="desactivarSeleccionado('tipo',scope.row.id)"
                                                        size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary" v-else @click="activarSeleccionado('tipo',scope.row.id)" size="mini">
+                                            <el-button type="primary" v-else
+                                                       @click="activarSeleccionado('tipo',scope.row.id)"
+                                                       size="mini">
                                                 Activar
                                             </el-button>
                                         </template>
@@ -161,35 +165,32 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="complexion"
-                                        border
-                                        height="250"
-                                        style="width: 100%"
+                                    :data="complexion"
+                                    border
+                                    height="250"
+                                    style="width: 100%"
                                 >
                                     <el-table-column
-                                            prop="complexion"
-                                            label="Complexion"
-                                            width="180">
+                                        prop="complexion"
+                                        label="Complexion"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="activo"
-                                            label="Activo"
-                                            width="180">
+                                        prop="activo"
+                                        label="Activo"
+                                        width="180">
                                     </el-table-column>
 
                                     <el-table-column
-                                            label="Operaciones">
+                                        label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button
-                                                    @click="desactivarSeleccionado('complexion',scope.row.id)"
-                                                    type="danger"
-                                                       v-if="scope.row.activo === 'S'"
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
+                                                       @click="desactivarSeleccionado('complexion',scope.row.id)"
                                                        size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary"
-                                                       v-else
+                                            <el-button type="primary" v-else
                                                        @click="activarSeleccionado('complexion',scope.row.id)"
                                                        size="mini">
                                                 Activar
@@ -214,33 +215,31 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="colores"
-                                        border
-                                        height="250"
-                                        style="width: 100%"
+                                    :data="colores"
+                                    border
+                                    height="250"
+                                    style="width: 100%"
                                 >
                                     <el-table-column
-                                            prop="color"
-                                            label="Color"
-                                            width="180">
+                                        prop="color"
+                                        label="Color"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="activo"
-                                            label="Activo"
-                                            width="180">
+                                        prop="activo"
+                                        label="Activo"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            label="Operaciones">
+                                        label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger"
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
                                                        @click="desactivarSeleccionado('color',scope.row.id)"
-                                                       v-if="scope.row.activo === 'S'"
                                                        size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary"
-                                                       v-else
+                                            <el-button type="primary" v-else
                                                        @click="activarSeleccionado('color',scope.row.id)"
                                                        size="mini">
                                                 Activar
@@ -261,34 +260,32 @@
                         <el-row>
                             <el-col>
                                 <el-table
-                                        :data="razas"
-                                        border
-                                        height="250"
-                                        style="width: 100%"
+                                    :data="razas"
+                                    border
+                                    height="250"
+                                    style="width: 100%"
                                 >
                                     <el-table-column
-                                            prop="raza"
-                                            label="Raza"
-                                            width="180">
+                                        prop="raza"
+                                        label="Raza"
+                                        width="180">
                                     </el-table-column>
                                     <el-table-column
-                                            prop="activo"
-                                            label="Activo"
-                                            width="180">
+                                        prop="activo"
+                                        label="Activo"
+                                        width="180">
                                     </el-table-column>
 
                                     <el-table-column
-                                            label="Operaciones">
+                                        label="Operaciones">
                                         <template slot-scope="scope">
                                             <el-button type="default" size="mini">Modificar</el-button>
-                                            <el-button type="danger"
+                                            <el-button type="danger" v-if="scope.row.activo === 'S'"
                                                        @click="desactivarSeleccionado('raza',scope.row.id)"
-                                                       v-if="scope.row.activo === 'S'"
                                                        size="mini">
                                                 Desactivar
                                             </el-button>
-                                            <el-button type="primary"
-                                                       v-else
+                                            <el-button type="primary" v-else
                                                        @click="activarSeleccionado('raza',scope.row.id)"
                                                        size="mini">
                                                 Activar
@@ -301,20 +298,46 @@
                     </div>
                 </el-col>
             </el-row>
+            <!--insertar-->
             <el-dialog
-                    v-bind:title="'Registrar'+' '+datosFormularios.label"
-                    :visible.sync="modales.insertar"
-                    width="30%"
-                    center
+                v-bind:title="'Registrar'+' '+datosFormularios.label"
+                :visible.sync="modales.insertar"
+                width="30%"
+                center
             >
                 <el-form :inline="true"
                          :model="datosFormularios"
                          class="demo-form-inline">
                     <el-form-item v-bind:label="datosFormularios.label">
-                        <el-input v-model="datosFormularios.valor"></el-input>
+                        <el-input v-model="datosFormularios.valor"
+                                  type="text"
+                                  maxlength="100"
+                        ></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="agregarRegistros">Añadir</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-dialog>
+            <!--modificar-->
+            <el-dialog
+                v-bind:title="'Modificar '+formularioModificar.label"
+                :visible.sync="modales.modificar"
+                width="30%"
+                center
+            >
+                <el-form :inline="true"
+                         :model="formularioModificar"
+                         class="demo-form-inline">
+
+                    <el-form-item v-bind:label="formularioModificar.label">
+                        <el-input
+                            type="text"
+                            maxlength="100"
+                            v-model="formularioModificar.valor"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="actualizarSeleccionado">Actualizar</el-button>
                     </el-form-item>
                 </el-form>
             </el-dialog>
@@ -334,13 +357,19 @@
         data() {
             return {
                 modales: {
-                    insertar: false
+                    insertar: false,
+                    modificar: false
                 },
                 datosFormularios: {
                     valor: '',
                     label: '',
                     tipo: '',
 
+                },
+                formularioModificar: {
+                    valor: '',
+                    label: '',
+                    id: 0
                 },
                 caracter: [],
                 pelaje: [],
@@ -352,7 +381,12 @@
         },
         methods: {
             listado() {
-
+                const loading = this.$loading({
+                    lock: true,
+                    text: 'Obteniendo registros',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
                 axios.get('api/listadoMantenedores').then(response => {
                     this.caracter = response.data.caracter;
                     this.pelaje = response.data.pelaje;
@@ -360,6 +394,7 @@
                     this.complexion = response.data.complexion;
                     this.colores = response.data.colores;
                     this.razas = response.data.razas;
+                    loading.close();
                 });
 
             },
@@ -406,6 +441,91 @@
                     });
                 });
             },
+            solicitarSeleccionado(categoria, id) {
+                this.formularioModificar.label = categoria;
+                axios.get('api/solicitarSeleccionado', {params: {categoria: categoria, id: id}})
+                    .then(
+                        response => {
+                            switch (categoria) {
+                                case 'Raza':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.raza;
+                                    break;
+                                case 'Tipo':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.tipo;
+                                    break;
+                                case 'Color':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.color;
+                                    break;
+                                case 'Complexion':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.complexion;
+                                    break;
+                                case 'Caracter':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.caracter;
+                                    break;
+                                case 'Pelaje':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.pelaje;
+                                    break;
+
+                            }
+                            this.modales.modificar = true;
+                        }
+                    )
+
+            },
+            actualizarSeleccionado() {
+
+                axios.put('api/actualizarSeleccionado',
+                    {
+                        categoria: this.formularioModificar.label,
+                        id: this.formularioModificar.id,
+                        valor: this.formularioModificar.valor
+                    })
+                    .then(
+                        response => {
+                            /*switch (categoria) {
+                                case 'Raza':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.raza;
+                                    break;
+                                case 'Tipo':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.tipo;
+                                    break;
+                                case 'Color':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.color;
+                                    break;
+                                case 'Complexion':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.complexion;
+                                    break;
+                                case 'Caracter':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.caracter;
+                                    break;
+                                case 'Pelaje':
+                                    this.formularioModificar.id = response.data.seleccionado.id;
+                                    this.formularioModificar.valor = response.data.seleccionado.pelaje;
+                                    break;
+
+                            }*/
+                            this.modales.modificar = false;
+                            this.$message({
+                                message: 'Actualizacion exitosa',
+                                type: 'succes'
+
+                            });
+                            this.listado();
+                        }
+                    )
+
+            },
             crearFormulario(tipo) {
                 this.datosFormularios.label = tipo;
                 this.datosFormularios.tipo = tipo;
@@ -414,16 +534,15 @@
                 /*primero va el mensaje*/
                 /*luego el titulo*/
                 /*para finalizar entregamos el mensaje despues del response de axios*/
-                let articuloGramatico =  'el';
+                let articulo = 'el';
                 let seleccionado = 'seleccionado';
-                if(categoria === 'raza'){
-                    articuloGramatico = 'la';
+                if (articulo === 'raza') {
+                    articulo = 'la';
                     seleccionado = 'seleccionada';
                 }
-                let string_Categoria = categoria;
-                this.$confirm('Desea activar '+articuloGramatico+' '+string_Categoria+' '+ seleccionado, 'Advertencia', {
+                this.$confirm('Desea activar ' + articulo + ' ' + categoria + ' ' + seleccionado, 'Advertencia', {
                     confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancelar',
+                    cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
                     axios.put('api/activarSeleccionado', {categoria: categoria, id: id}).then(response => {
@@ -444,19 +563,18 @@
                 /*primero va el mensaje*/
                 /*luego el titulo*/
                 /*para finalizar entregamos el mensaje despues del response de axios*/
-                let articuloGramatico =  'el';
+                let articulo = 'el';
                 let seleccionado = 'seleccionado';
-                if(categoria === 'raza'){
-                    articuloGramatico = 'la';
+                if (articulo === 'raza') {
+                    articulo = 'la';
                     seleccionado = 'seleccionada';
                 }
-                let string_Categoria = categoria;
-                this.$confirm('Desea desactivar '+articuloGramatico+' '+string_Categoria+' '+ seleccionado, 'Advertencia', {
+                this.$confirm('Desea desactivar ' + articulo + ' ' + categoria + ' ' + seleccionado, 'Advertencia', {
                     confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancelar',
+                    cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/activarSeleccionado', {categoria: categoria, id: id}).then(response => {
+                    axios.put('api/desactivarSeleccionado', {categoria: categoria, id: id}).then(response => {
                         this.$message({
                             type: 'success',
                             message: 'Desactivacion completada'

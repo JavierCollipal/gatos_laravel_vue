@@ -3,6 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/public/css
+/public/js
 .env
 .phpunit.result.cache
 Homestead.json
@@ -15,11 +17,5 @@ yarn-error.log
 \.idea/
 
 package\.json
-
-public/js/app\.js
-
-public/css/app\.css
-
-public/js/bootstrap\.js
 
 public/mix-manifest\.json

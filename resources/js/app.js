@@ -23,18 +23,30 @@ window.Vue = require('vue');
 import ElementUI from 'element-ui';
 import Vue from 'vue'
 import VueRouter from 'vue-router';
+import VeeValidate from 'vee-validate';
+import VeeElement from 'vee-element';
 import App from './views/App';
 import Bienvenido from './views/bienvenido';
-import Hijo from './views/hijo';
 import Listado from './views/listado';
-import Mantenedor from './views/mantenedores'
-import Insertar from './views/insertado';
+import Mantenedor from './views/mantenedores';
+import Creador from './views/creador';
 import Modificar from './views/modificar';
 import 'element-ui/lib/theme-chalk/index.css';
 
+// configure validator
+const rules = {
+    // add custom rules
+}
 
-Vue.use(VueRouter)
+const options = {
+    // add custom options
+}
+
+const validator = new VeeValidate.Validator(rules, options);
+
+Vue.use(VueRouter);
 Vue.use(ElementUI);
+Vue.use(VeeElement, validator);
 Vue.component('my-switch', require('./components/my-switch.vue').default);
 
 
@@ -46,20 +58,11 @@ const router = new VueRouter({
             name: 'inicio',
             component: Bienvenido
         },
-        {
-            path: '/hijo',
-            name: 'hijo',
-            component: Hijo
-        },
+
         {
             path: '/listado',
             name: 'listado',
             component: Listado
-        },
-        {
-            path: '/registro',
-            name: 'registrar',
-            component: Insertar
         },
         {
             path: '/modificar',
@@ -70,6 +73,11 @@ const router = new VueRouter({
             path: '/mantenedores',
             name: 'mantenedor',
             component: Mantenedor
+        },
+        {
+            path: '/creador',
+            name: 'creador',
+            component: Creador
         }
     ],
 });

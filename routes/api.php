@@ -15,6 +15,8 @@ use App\Http\Controllers\GatosController;
 Route::get('/listado','GatosController@index');
 Route::get('/listadoMantenedores','MantenedoresController@index');
 Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');
+Route::get('/solicitarSeleccionado','MantenedoresController@solicitarSeleccionado');
+Route::put('/actualizarSeleccionado','MantenedoresController@actualizarSeleccionado');
 Route::post('/agregarPelaje','MantenedoresController@agregarPelaje');
 Route::post('/agregarColor','MantenedoresController@agregarColor');
 Route::post('/agregarRaza','MantenedoresController@agregarRaza');
