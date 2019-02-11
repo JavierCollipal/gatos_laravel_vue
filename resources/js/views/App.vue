@@ -9,7 +9,10 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto"></ul>
+                        <ul class="navbar-nav mr-auto">
+                            <router-link :to="{name: 'ingreso'}" class="navbar-brand">Ingresa</router-link>
+                            <router-link :to="{name: 'registro'}" class="navbar-brand">Registrate</router-link>
+                        </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <router-link :to="{name: 'listado'}" class="navbar-brand">Mis gatos</router-link>

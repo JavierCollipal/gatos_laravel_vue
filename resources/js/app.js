@@ -31,6 +31,8 @@ import Listado from './views/listado';
 import Mantenedor from './views/mantenedores';
 import Creador from './views/creador';
 import Modificar from './views/modificar';
+import Ingreso  from './views/ingreso';
+import Registro from './views/registro';
 import 'element-ui/lib/theme-chalk/index.css';
 
 // configure validator
@@ -78,6 +80,16 @@ const router = new VueRouter({
             path: '/creador',
             name: 'creador',
             component: Creador
+        },
+        {
+            path: '/ingreso',
+            name: 'ingreso',
+            component: Ingreso
+        },
+        {
+            path: '/registro',
+            name: 'registro',
+            component: Registro
         }
     ],
 });
