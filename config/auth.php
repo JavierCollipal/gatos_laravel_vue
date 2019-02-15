@@ -34,7 +34,7 @@ return [
     | Supported: "session", "token"
     |
     */
-
+ /*esta configuracion nos asegura que nuestra aplicacion usara el tokenGuard de passport*/
     'guards' => [
         'web' => [
             'driver' => 'session',
@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],
