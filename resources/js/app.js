@@ -31,8 +31,8 @@ import Listado from './views/listado';
 import Mantenedor from './views/mantenedores';
 import Creador from './views/creador';
 import Modificar from './views/modificar';
-import Ingreso  from './components/passport/AuthorizedClients';
-import Registro from './components/passport/Clients';
+import Ingreso  from './views/ingreso';
+import Registro from './views/registro';
 import 'element-ui/lib/theme-chalk/index.css';
 
 // configure validator
