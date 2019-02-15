@@ -12,6 +12,23 @@ use App\Http\Controllers\GatosController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => ['json.response']], function () {
+
+    Route::middleware('auth:api')->get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    // rutas publicas
+    Route::post('/login', 'Api\AuthController@login')->name('login.api');
+    Route::post('/register', 'Api\AuthController@register')->name('register.api');
+
+    // rutas privadas
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/logout', 'Api\AuthController@logout')->name('logout');
+    });
+
+});
+
 Route::get('/listado','GatosController@index');
 Route::get('/listadoMantenedores','MantenedoresController@index');
 Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');
