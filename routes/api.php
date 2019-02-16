@@ -25,26 +25,24 @@ Route::group(['middleware' => ['json.response']], function () {
     // rutas privadas
     Route::middleware('auth:api')->group(function () {
         Route::get('/logout', 'Api\AuthController@logout')->name('logout');
+        Route::get('/listado','GatosController@index');
+        Route::get('/listadoMantenedores','MantenedoresController@index');
+        Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');
+        Route::get('/solicitarSeleccionado','MantenedoresController@solicitarSeleccionado');
+        Route::put('/actualizarSeleccionado','MantenedoresController@actualizarSeleccionado');
+        Route::post('/agregarPelaje','MantenedoresController@agregarPelaje');
+        Route::post('/agregarColor','MantenedoresController@agregarColor');
+        Route::post('/agregarRaza','MantenedoresController@agregarRaza');
+        Route::post('/agregarComplexion','MantenedoresController@agregarComplexion');
+        Route::post('/agregarTipo','MantenedoresController@agregarTipo');
+        Route::put('/activarSeleccionado','MantenedoresController@activarSeleccionado');
+        Route::put('/desactivarSeleccionado','MantenedoresController@desactivarSeleccionado');
+        Route::put('/activar','GatosController@activar');
+        Route::put('/desactivar','GatosController@desactivar');
     });
 
 });
 
-Route::get('/listado','GatosController@index');
-Route::get('/listadoMantenedores','MantenedoresController@index');
-Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');
-Route::get('/solicitarSeleccionado','MantenedoresController@solicitarSeleccionado');
-Route::put('/actualizarSeleccionado','MantenedoresController@actualizarSeleccionado');
-Route::post('/agregarPelaje','MantenedoresController@agregarPelaje');
-Route::post('/agregarColor','MantenedoresController@agregarColor');
-Route::post('/agregarRaza','MantenedoresController@agregarRaza');
-Route::post('/agregarComplexion','MantenedoresController@agregarComplexion');
-Route::post('/agregarTipo','MantenedoresController@agregarTipo');
-Route::put('/activarSeleccionado','MantenedoresController@activarSeleccionado');
-Route::put('/desactivarSeleccionado','MantenedoresController@desactivarSeleccionado');
-Route::put('/activar','GatosController@activar');
-Route::put('/desactivar','GatosController@desactivar');
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 
