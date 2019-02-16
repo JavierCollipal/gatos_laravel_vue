@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="alert alert-danger" v-if="error">
-            <p>There was an error, unable to sign in with those credentials.</p>
+            <p>No fue posible ingresar con tus credenciales.</p>
+            <p v-text="errors"></p>
         </div>
         <form autocomplete="off" @submit.prevent="login">
             <div class="form-group">
@@ -9,10 +10,10 @@
                 <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Contraseña</label>
                 <input type="password" id="password" class="form-control" v-model="password" required>
             </div>
-            <button type="submit" class="btn btn-default">Sign in</button>
+            <button type="submit" class="btn btn-default">Ingresa</button>
         </form>
     </div>
 </template>
@@ -23,27 +24,23 @@
             return {
                 email: null,
                 password: null,
-                error: false
+                error: false,
+                errors: {}
             }
         },
         mounted(){
         },
         methods: {
             login(){
-
-                this.$auth.login({
-                    params: {
-                        email: app.email,
-                        password: app.password
-                    },
-                    success: function () {},
-                    error: function (resp) {
-                        alert(resp.response.data.msg)
-                    },
-                    rememberMe: true,
-                    redirect: '/dashboard',
-                    fetchUser: true,
-                });
+                axios.post('api/login',{
+                    email: this.email,
+                    password: this.password
+                }).then(response =>{
+                    this.$router.push('/');
+                }).catch(error =>{
+                    this.error = true;
+                    this.errors = error.response.data;
+                })
             },
         }
     }

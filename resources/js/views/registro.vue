@@ -4,7 +4,7 @@
             <p>Error al registrar, Vuelva a verificar su registro.</p>
         </div>
         <div class="alert alert-success" v-if="success">
-            <p>Registro completo, ya puedes ingresar<router-link :to="{name:'login'}">Ingresa.</router-link></p>
+            <p>Registro completo, ya puedes ingresar<router-link :to="{name:'ingreso'}">Ingresa.</router-link></p>
         </div>
         <form autocomplete="off" v-on:submit.prevent="register" v-if="!success">
             <div class="form-group" v-bind:class="{ 'has-error': error && errors.errors.username }">
