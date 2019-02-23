@@ -58,9 +58,6 @@ class AuthController extends Controller
             ]);
 
             return json_decode((string) $response->getBody(), true);
-
-
-
         }
         else {
             $response = 'El usuario no existe';
@@ -69,6 +66,17 @@ class AuthController extends Controller
 
     }
 
+    public function usuario(Request $request){
+        $array_datosLogin = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+        if(Auth::attempt($array_datosLogin)){
+            $user = Auth::user();
+            return response($user->name,200);
+        }
+
+    }
     public function logout(Request $request)
     {
 

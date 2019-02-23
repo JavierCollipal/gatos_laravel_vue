@@ -1,46 +1,65 @@
 <template>
 
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div  class="m-b-md">
-                    <h2 class="title m-b-md">
-                        Gatos
-                    </h2>
-                    <h3>
-                        Tu  pagina de gatos
-                    </h3>
-                </div>
+    <div class="flex-center position-ref full-height">
+        <div class="content">
+            <div class="m-b-md">
+                <h2 class="title m-b-md">
+                    Gatos
+                </h2>
+                <h3 v-if="nombre_usuario"">
+                    Hola {{this.nombre_usuario}}
+                </h3>
+                <h3 v-else>
+                    Tu app de gatos
+                </h3>
             </div>
         </div>
+    </div>
 </template>
-    <script>
+<script>
     export default {
+        created() {
+            const nombre_usuario = localStorage.getItem('nombre_usuario');
+            this.nombre_usuario = nombre_usuario;
+        },
+        data() {
+            return {
+                nombre_usuario: null,
+            }
+        },
+
 
     }
-    </script>
- <style scoped>
+</script>
+<style scoped>
     .full-height {
         height: 100vh;
     }
+
     .flex-center {
         align-items: center;
         display: flex;
         justify-content: center;
     }
+
     .position-ref {
         position: relative;
     }
+
     .top-right {
         position: absolute;
         right: 10px;
         top: 18px;
     }
+
     .content {
         text-align: center;
     }
+
     .title {
         font-size: 60px;
     }
+
     .links > a {
         color: #636b6f;
         padding: 0 25px;
@@ -50,8 +69,9 @@
         text-decoration: none;
         text-transform: uppercase;
     }
+
     .m-b-md {
         margin-bottom: 30px;
         color: #000000;
     }
-    </style>
+</style>

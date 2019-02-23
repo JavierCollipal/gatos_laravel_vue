@@ -18,10 +18,10 @@ use App\Http\Controllers\GatosController;
     // rutas publicas
 Route::post('/login', 'Api\AuthController@login')->name('login.api');
 Route::post('/register', 'Api\AuthController@register')->name('register.api');
+Route::post('/usuario', 'Api\AuthController@usuario')->name('usuario.api');
 
     // rutas privadas
     Route::middleware('auth:api')->group(function () {
-        Route::get('/logout', 'Api\AuthController@logout')->name('logout');
         Route::get('/listado','GatosController@index');
         Route::get('/listadoMantenedores','MantenedoresController@index');
         Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');

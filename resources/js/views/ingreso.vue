@@ -38,8 +38,14 @@
                     password: this.password
                 }).then(response =>{
                     localStorage.setItem('access_token', response.data.access_token);
-                    this.$router.go('/');
-                    this.$router.push('/');
+                    axios.post('usuario',{
+                        email: this.email,
+                        password: this.password
+                    }).then(response=>{
+                        localStorage.setItem('nombre_usuario',response.data);
+                        this.$router.go('/');
+                        this.$router.push('/');
+                    })
                 }).catch(error =>{
                     this.error = true;
                     this.errors = error.response.data;
