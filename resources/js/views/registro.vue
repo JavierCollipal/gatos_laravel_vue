@@ -41,7 +41,7 @@
         },
         methods: {
             register(){
-                axios.post('api/register',{
+                axios.post('register',{
                     name: this.name,
                     email: this.email,
                     password: this.password

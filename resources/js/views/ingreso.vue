@@ -19,6 +19,8 @@
 </template>
 
 <script>
+    import PersonalAccessTokens from "../components/passport/PersonalAccessTokens";
+
     export default {
         data(){
             return {
@@ -32,10 +34,11 @@
         },
         methods: {
             login(){
-                axios.post('api/login',{
+                axios.post('login',{
                     email: this.email,
                     password: this.password
                 }).then(response =>{
+                    localStorage.setItem('access_token', response.data.access_token);
                     this.$router.push('/');
                 }).catch(error =>{
                     this.error = true;

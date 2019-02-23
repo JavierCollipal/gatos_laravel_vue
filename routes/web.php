@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
+
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+
+
+Auth::routes();
+

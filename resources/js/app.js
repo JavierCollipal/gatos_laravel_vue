@@ -6,7 +6,6 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
 
 /**
@@ -21,7 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 import ElementUI from 'element-ui';
-import Vue from 'vue'
+import Vue from 'vue';
+
 import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
 import VeeElement from 'vee-element';
@@ -50,6 +50,12 @@ Vue.use(VueRouter);
 Vue.use(ElementUI);
 Vue.use(VeeElement, validator);
 Vue.component('my-switch', require('./components/my-switch.vue').default);
+
+window.axios.defaults.baseURL = 'http://gatos.test/api';
+axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+};
 
 
 const router = new VueRouter({
@@ -82,7 +88,7 @@ const router = new VueRouter({
             component: Creador
         },
         {
-            path: '/ingreso',
+            path: '/login',
             name: 'ingreso',
             component: Ingreso
         },

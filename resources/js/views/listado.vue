@@ -88,7 +88,7 @@
         },
         methods: {
             listado(){
-                axios.get('api/listado').then(response=>{
+                axios.get('listado').then(response=>{
                     this.gatos = response.data.gatos;
                 });
 
@@ -103,7 +103,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/activar',{id:id}).then(responser =>{
+                    axios.put('activar',{id:id}).then(responser =>{
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'
@@ -126,7 +126,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('api/desactivar',{id:id}).then(response =>{
+                    axios.put('desactivar',{id:id}).then(response =>{
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'

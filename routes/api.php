@@ -12,15 +12,31 @@ use App\Http\Controllers\GatosController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::group(['middleware' => ['json.response']], function () {
 
-    Route::middleware('auth:api')->get('/user', function (Request $request) {
-        return $request->user();
-    });
 
+Route::get('/redirect', function () {
+    $query = http_build_query([
+        'client_id' => '12',
+        'redirect_uri' => 'http://gatos.test/callback',
+        'response_type' => 'code',
+        'scope' => '',
+    ]);
+
+    return redirect('http://gatos.test/oauth/authorize?'.$query);
+});
     // rutas publicas
-    Route::post('/login', 'Api\AuthController@login')->name('login.api');
-    Route::post('/register', 'Api\AuthController@register')->name('register.api');
+Route::post('/login', 'Api\AuthController@login')->name('login.api');
+Route::post('/register', 'Api\AuthController@register')->name('register.api');
+    Route::get('/redirect', function () {
+    $query = http_build_query([
+        'client_id' => '12',
+        'redirect_uri' => 'http://gatos.test/',
+        'response_type' => 'token',
+        'scope' => '',
+    ]);
+
+    return redirect('http://gatos.test/oauth/authorize?'.$query);
+});
 
     // rutas privadas
     Route::middleware('auth:api')->group(function () {
@@ -41,7 +57,7 @@ Route::group(['middleware' => ['json.response']], function () {
         Route::put('/desactivar','GatosController@desactivar');
     });
 
-});
+
 
 
 
