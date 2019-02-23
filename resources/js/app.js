@@ -63,7 +63,7 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'inicio',
+            name: 'dashboard',
             component: Bienvenido
         },
 

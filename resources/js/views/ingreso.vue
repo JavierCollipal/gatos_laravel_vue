@@ -19,7 +19,6 @@
 </template>
 
 <script>
-    import PersonalAccessTokens from "../components/passport/PersonalAccessTokens";
 
     export default {
         data(){
@@ -39,6 +38,7 @@
                     password: this.password
                 }).then(response =>{
                     localStorage.setItem('access_token', response.data.access_token);
+                    this.$router.go('/');
                     this.$router.push('/');
                 }).catch(error =>{
                     this.error = true;
