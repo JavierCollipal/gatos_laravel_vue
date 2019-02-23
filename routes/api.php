@@ -14,29 +14,10 @@ use App\Http\Controllers\GatosController;
 */
 
 
-Route::get('/redirect', function () {
-    $query = http_build_query([
-        'client_id' => '12',
-        'redirect_uri' => 'http://gatos.test/callback',
-        'response_type' => 'code',
-        'scope' => '',
-    ]);
 
-    return redirect('http://gatos.test/oauth/authorize?'.$query);
-});
     // rutas publicas
 Route::post('/login', 'Api\AuthController@login')->name('login.api');
 Route::post('/register', 'Api\AuthController@register')->name('register.api');
-    Route::get('/redirect', function () {
-    $query = http_build_query([
-        'client_id' => '12',
-        'redirect_uri' => 'http://gatos.test/',
-        'response_type' => 'token',
-        'scope' => '',
-    ]);
-
-    return redirect('http://gatos.test/oauth/authorize?'.$query);
-});
 
     // rutas privadas
     Route::middleware('auth:api')->group(function () {
