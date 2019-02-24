@@ -45,19 +45,12 @@ class AuthController extends Controller
         );
 
         if (Auth::attempt($array_datosLogin)) {
-            $http = new \GuzzleHttp\Client;
-            $response = $http->post('http://gatos.test/oauth/token', [
-                'form_params' => [
-                    'grant_type' => 'password',
-                    'client_id' => '13',
-                    'client_secret' => 'eCXQOkizILCUHARn7c4DaFn8ImiKf4RVrzpVKUYI',
-                    'username' => $request->email,
-                    'password' => $request->password,
-                    'scope' => '',
-                ],
-            ]);
+            $user = Auth::user();
+            $token = $user->createToken('Gatos_token')->accessToken;
+            $response['nombre_usuario']= $user->name;
+            $response['token'] = $token;
+            return response($response,200);
 
-            return json_decode((string) $response->getBody(), true);
         }
         else {
             $response = 'El usuario no existe';
@@ -72,7 +65,7 @@ class AuthController extends Controller
             'password' => $request->password
         );
         if(Auth::attempt($array_datosLogin)){
-            $user = Auth::user();
+
             return response($user->name,200);
         }
 

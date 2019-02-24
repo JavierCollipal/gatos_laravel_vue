@@ -37,15 +37,10 @@
                     email: this.email,
                     password: this.password
                 }).then(response =>{
-                    localStorage.setItem('access_token', response.data.access_token);
-                    axios.post('usuario',{
-                        email: this.email,
-                        password: this.password
-                    }).then(response=>{
-                        localStorage.setItem('nombre_usuario',response.data);
-                        this.$router.go('/');
-                        this.$router.push('/');
-                    })
+                    localStorage.setItem('access_token', response.data.token);
+                    localStorage.setItem('nombre_usuario',response.data.nombre_usuario);
+                    this.$router.go('/');
+                    this.$router.push('/');
                 }).catch(error =>{
                     this.error = true;
                     this.errors = error.response.data;
