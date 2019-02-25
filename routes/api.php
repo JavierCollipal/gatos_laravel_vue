@@ -16,8 +16,7 @@ use App\Http\Controllers\GatosController;
 
 
     // rutas publicas
-Route::post('/login', 'Api\AuthController@login')->name('login.api');
-Route::post('/register', 'Api\AuthController@register')->name('register.api');
+
 Route::post('/usuario', 'Api\AuthController@usuario')->name('usuario.api');
 
     // rutas privadas
