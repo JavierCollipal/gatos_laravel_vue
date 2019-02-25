@@ -10,10 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
-
-
 Auth::routes();
+Route::post('/login', 'Api\AuthController@login')->name('login.api');
+Route::post('/register', 'Api\AuthController@register')->name('register.api');
+
+Route::any('{all}', function(){
+    return view('inicio');
+})->where(['all' => '.*']);
+
+
+
 

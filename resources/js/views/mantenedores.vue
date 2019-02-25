@@ -388,7 +388,7 @@
                     background: 'rgba(0, 0, 0, 0.7)'
                 });
 
-                axios.get('listadoMantenedores').then(response => {
+                axios.get('api/listadoMantenedores').then(response => {
                     this.caracter = response.data.caracter;
                     this.pelaje = response.data.pelaje;
                     this.tipo = response.data.tipo;
@@ -423,7 +423,7 @@
                         break;
 
                 }
-                axios.post('' + rutaAPI, {
+                axios.post('api/' + rutaAPI, {
                     valor: this.datosFormularios.valor
                 }).then(response => {
                     this.datosFormularios.valor = '';
@@ -444,7 +444,7 @@
             },
             solicitarSeleccionado(categoria, id) {
                 this.formularioModificar.label = categoria;
-                axios.get('solicitarSeleccionado', {params: {categoria: categoria, id: id}})
+                axios.get('api/solicitarSeleccionado', {params: {categoria: categoria, id: id}})
                     .then(
                         response => {
                             switch (categoria) {
@@ -481,7 +481,7 @@
             },
             actualizarSeleccionado() {
 
-                axios.put('actualizarSeleccionado',
+                axios.put('api/actualizarSeleccionado',
                     {
                         categoria: this.formularioModificar.label,
                         id: this.formularioModificar.id,
@@ -546,7 +546,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('activarSeleccionado', {categoria: categoria, id: id}).then(response => {
+                    axios.put('api/activarSeleccionado', {categoria: categoria, id: id}).then(response => {
                         this.$message({
                             type: 'success',
                             message: 'Activacion completada'
@@ -575,7 +575,7 @@
                     cancelButtonText: 'Cancel',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('desactivarSeleccionado', {categoria: categoria, id: id}).then(response => {
+                    axios.put('api/desactivarSeleccionado', {categoria: categoria, id: id}).then(response => {
                         this.$message({
                             type: 'success',
                             message: 'Desactivacion completada'
