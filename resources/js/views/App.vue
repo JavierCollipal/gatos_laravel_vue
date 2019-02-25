@@ -11,17 +11,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul v-if="tokenPresente === false" class="navbar-nav mr-auto">
+                    <ul v-if="logeado === false" class="navbar-nav mr-auto">
                         <router-link :to="{name: 'ingreso'}" class="navbar-brand">Ingresa</router-link>
                         <router-link :to="{name: 'registro'}" class="navbar-brand">Registrate</router-link>
                     </ul>
                     <ul v-else class="navbar-nav mr-auto">
 
-                        <button v-on:click="salir">Salir</button>
                     </ul>
-                    <a v-if="tokenPresente" v-text="nombre_usuario"></a>
+                    <a v-if="logeado" v-text="nombre_usuario"></a>
                     <!--lado derecho de navegacion, solo visible con token en localstorage-->
-                    <ul v-if="tokenPresente" class="navbar-nav ml-auto">
+                    <ul v-if="logeado" class="navbar-nav ml-auto">
 
                         <router-link :to="{name: 'listado'}" class="navbar-brand">Mis gatos</router-link>
                         <router-link :to="{name: 'creador'}" class="navbar-brand">Agrega mas gatitos :=)</router-link>
@@ -39,31 +38,27 @@
 </template>
 <script>
     export default {
-        created() {
-            const token = localStorage.getItem('access_token');
-            if (token) {
-                this.tokenPresente = true;
-                this.nombre_usuario = localStorage.getItem('nombre_usuario');
-            } else {
-                this.tokenPresente = false;
-            }
-
-
-        },
+      created() {
+          this.obtenerUsuario();
+      },
         data() {
             return {
-                tokenPresente: null,
-                nombre_usuario: null
+                nombre_usuario: null,
+                logeado: false
             }
         },
         methods: {
-            salir() {
-                localStorage.removeItem('access_token');
-                localStorage.removeItem('nombre_usuario');
-                this.$router.go('/');
-                this.$router.push('/');
-            }
+          obtenerUsuario(){
+              axios.get('api/user').then(response => {
+                  this.nombre_usuario = response.data.name;
+                  this.logeado = true;
+              }).catch(
+                  error =>{
+                  }
+              )
+          }
         }
+
 
     }
 </script>

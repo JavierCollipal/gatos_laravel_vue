@@ -37,8 +37,6 @@
                     email: this.email,
                     password: this.password
                 }).then(response =>{
-                    localStorage.setItem('access_token', response.data.token);
-                    localStorage.setItem('nombre_usuario',response.data.nombre_usuario);
                     this.$router.go('/');
                     this.$router.push('/');
                 }).catch(error =>{

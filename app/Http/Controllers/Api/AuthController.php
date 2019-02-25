@@ -46,9 +46,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($array_datosLogin)) {
             $user = Auth::user();
-            $token = $user->createToken('Gatos_token')->accessToken;
             $response['nombre_usuario']= $user->name;
-            $response['token'] = $token;
             return response($response,200);
 
         }
@@ -59,17 +57,6 @@ class AuthController extends Controller
 
     }
 
-    public function usuario(Request $request){
-        $array_datosLogin = array(
-            'email' => $request->email,
-            'password' => $request->password
-        );
-        if(Auth::attempt($array_datosLogin)){
-
-            return response($user->name,200);
-        }
-
-    }
     public function logout(Request $request)
     {
 

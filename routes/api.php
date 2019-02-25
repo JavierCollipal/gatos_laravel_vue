@@ -15,12 +15,12 @@ use App\Http\Controllers\GatosController;
 
 
 
-    // rutas publicas
-
-Route::post('/usuario', 'Api\AuthController@usuario')->name('usuario.api');
 
     // rutas privadas
     Route::middleware('auth:api')->group(function () {
+        Route::get('/user', function (Request $request) {
+            return $request->user();
+        });
         Route::get('/listado','GatosController@index');
         Route::get('/listadoMantenedores','MantenedoresController@index');
         Route::post('/agregarCaracter','MantenedoresController@agregarCaracter');
