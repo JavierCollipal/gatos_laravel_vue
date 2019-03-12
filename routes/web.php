@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::post('/login', 'Api\AuthController@login')->name('login.api');
 Route::post('/register', 'Api\AuthController@register')->name('register.api');
 

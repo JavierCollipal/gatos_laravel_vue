@@ -6,10 +6,7 @@
                 <h2 class="title m-b-md">
                     Gatos
                 </h2>
-                <h3 v-if="nombre_usuario"">
-                    Hola {{this.nombre_usuario}}
-                </h3>
-                <h3 v-else>
+                <h3>
                     Tu app de gatos
                 </h3>
             </div>
@@ -18,13 +15,9 @@
 </template>
 <script>
     export default {
-        created() {
-            const nombre_usuario = localStorage.getItem('nombre_usuario');
-            this.nombre_usuario = nombre_usuario;
-        },
+
         data() {
             return {
-                nombre_usuario: null,
             }
         },
 

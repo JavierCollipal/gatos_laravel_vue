@@ -16,7 +16,7 @@
                         <router-link :to="{name: 'registro'}" class="navbar-brand">Registrate</router-link>
                     </ul>
                     <ul v-else class="navbar-nav mr-auto">
-
+                    <button v-on:click="salir">Salir</button>
                     </ul>
                     <a v-if="logeado" v-text="nombre_usuario"></a>
                     <!--lado derecho de navegacion, solo visible con token en localstorage-->
@@ -56,7 +56,12 @@
                   error =>{
                   }
               )
-          }
+          },
+            salir(){
+              axios.post('logout').then(response => {
+                  this.$router.go('/');
+              });
+            }
         }
 
 

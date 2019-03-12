@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -60,11 +63,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
 
-        $token = $request->user()->token();
-        $token->revoke();
 
-        $response = 'You have been succesfully logged out!';
-        return response($response, 200);
+        return ['logged_out' => true];
 
     }
 }
