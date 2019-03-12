@@ -326,20 +326,21 @@
                 width="30%"
                 center
             >
-                <el-form :inline="true"
-                         :model="formularioModificar"
-                         class="demo-form-inline">
+                <el-form :inline="true" :model="formularioModificar" class="demo-form-inline">
 
                     <el-form-item v-bind:label="formularioModificar.label">
-                        <el-input
-                            type="text"
-                            maxlength="100"
-                            v-model="formularioModificar.valor"></el-input>
-                    </el-form-item>
+                            <el-input
+                                    type="text"
+                                    maxlength="100"
+                                    v-model="formularioModificar.valor"></el-input>
+                        </el-form-item>
+
                     <el-form-item>
-                        <el-button type="primary" @click="actualizarSeleccionado">Actualizar</el-button>
-                    </el-form-item>
-                </el-form>
+                            <el-button type="primary" @click="actualizarSeleccionado">Actualizar</el-button>
+                        </el-form-item>
+                    </el-form>
+
+
             </el-dialog>
         </el-main>
 
@@ -444,8 +445,7 @@
             },
             solicitarSeleccionado(categoria, id) {
                 this.formularioModificar.label = categoria;
-                axios.get('api/solicitarSeleccionado', {params: {categoria: categoria, id: id}})
-                    .then(
+                axios.get('api/solicitarSeleccionado', {params: {categoria: categoria, id: id}}).then(
                         response => {
                             switch (categoria) {
                                 case 'Raza':

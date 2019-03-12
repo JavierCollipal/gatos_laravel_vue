@@ -21,7 +21,6 @@ window.Vue = require('vue');
 
 import ElementUI from 'element-ui';
 import Vue from 'vue';
-
 import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
 import VeeElement from 'vee-element';
@@ -105,6 +104,7 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    render: h => h(App),
     components: { App },
     router,
 });
