@@ -40,4 +40,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => '2050590308571695',
+        'client_secret' => 'bf89b8b701ad9cd6e9b53eb83fe42274',
+        'redirect' => 'http://localhost:8000/auth/facebook/callback'
+    ]
+
 ];
