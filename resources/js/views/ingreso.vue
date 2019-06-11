@@ -1,45 +1,67 @@
 <template>
     <div>
+
         <div class="alert alert-danger" v-if="error">
             <p>No fue posible ingresar con tus credenciales.</p>
             <p v-text="errors"></p>
         </div>
-        <form autocomplete="off" @submit.prevent="login">
-            <div class="form-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" class="form-control" v-model="password" required>
-            </div>
-            <button type="submit" class="btn btn-default">Ingresa</button>
-        </form>
+        <el-row>
+            <el-col
+                :span="6"
+                :offset="9"
+            >
+                <el-form ref="form" :model="formulario">
+                    <el-form-item label="Email"
+                    >
+                        <el-input v-model="formulario.email"
+                                  placeholder="usuario@ejemplo.com"
+                                  type="email"
+                        >
+                        </el-input>
+
+                    </el-form-item>
+                    <el-form-item label="Contraseña"
+
+                    >
+                        <el-input v-model="formulario.password"
+                                  type="password"
+                        >
+                        </el-input>
+
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="login">Ingresa!</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <script>
 
     export default {
-        data(){
+        data() {
             return {
-                email: null,
-                password: null,
+                formulario: {
+                    email: null,
+                    password: null,
+                },
                 error: false,
                 errors: {}
             }
         },
-        mounted(){
+        mounted() {
         },
         methods: {
-            login(){
-                axios.post('login',{
-                    email: this.email,
-                    password: this.password
-                }).then(response =>{
-                    this.$router.go('/');
+            login() {
+                axios.post('login', {
+                    email: this.formulario.email,
+                    password: this.formulario.password
+                }).then(response => {
                     this.$router.push('/');
-                }).catch(error =>{
+                    this.$router.go('/');
+                }).catch(error => {
                     this.error = true;
                     this.errors = error.response.data;
                 })

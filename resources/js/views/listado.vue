@@ -129,7 +129,7 @@
                     axios.put('api/desactivar',{id:id}).then(response =>{
                         this.$message({
                             type: 'success',
-                            message: 'Activacion completada'
+                            message: 'Desactivación completada'
                         });
                         this.listado();
                     });

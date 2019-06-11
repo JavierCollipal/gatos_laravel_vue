@@ -3,52 +3,86 @@
         <div class="alert alert-danger" v-if="error && !success">
             <p>Error al registrar, Vuelva a verificar su registro.</p>
         </div>
-        <div class="alert alert-success" v-if="success">
-            <p>Registro completo, ya puedes ingresar<router-link :to="{name:'ingreso'}">Ingresa.</router-link></p>
-        </div>
-        <form autocomplete="off" v-on:submit.prevent="register" v-if="!success">
-            <div class="form-group" v-bind:class="{ 'has-error': error && errors.errors.username }">
-                <label for="name">Name</label>
-                <input type="text" id="name" class="form-control" v-model="name" required>
-                <span class="help-block" v-if="error && errors.errors.name">{{ errors.errors.name[0] }}</span>
-            </div>
-            <div class="form-group" v-bind:class="{ 'has-error': error && errors.errors.email }">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required>
-                <span class="help-block" v-if="error && errors.errors.email">{{ errors.errors.email[0] }}</span>
-            </div>
-            <div class="form-group" v-bind:class="{ 'has-error': error && errors.errors.password }">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" v-model="password" required>
-                <span class="help-block" v-if="error && errors.errors.password">{{ errors.errors.password[0] }}</span>
-            </div>
-            <button type="submit" class="btn btn-default">Registrarse</button>
-        </form>
+        <el-row>
+            <el-col
+                :span="6"
+                :offset="9"
+                v-if="success"
+            >
+                <div class="alert alert-success" >
+                    <p>Registro completo, ya puedes ingresar
+                        <router-link :to="{name:'ingreso'}"> Ingresa.</router-link>
+                    </p>
+                </div>
+            </el-col>
+            <el-col
+                :span="6"
+                :offset="9"
+                v-else
+            >
+                <el-form ref="form" :model="formulario">
+                    <el-form-item label="Nombre"
+                                  v-bind:class="{ 'has-error': error && errors.errors.username }"
+
+                    >
+                        <el-input v-model="formulario.name"
+                                  placeholder="Juan Perez"
+                                  type="text">
+                        </el-input>
+                        <span class="help-block" v-if="error && errors.errors.name">{{ errors.errors.name[0] }}</span>
+                    </el-form-item>
+                    <el-form-item label="Email"
+                                  v-bind:class="{ 'has-error': error && errors.errors.email }"
+                    >
+                        <el-input v-model="formulario.email"
+                                  placeholder="usuario@ejemplo.com"
+                                  type="email"
+                        >
+                        </el-input>
+                        <span class="help-block" v-if="error && errors.errors.email">{{ errors.errors.email[0] }}</span>
+                    </el-form-item>
+                    <el-form-item label="Contraseña"
+                                  v-bind:class="{ 'has-error': error && errors.errors.password }"
+                    >
+                        <el-input v-model="formulario.password"
+                                  type="password"
+                        >
+                        </el-input>
+                        <span class="help-block" v-if="error && errors.errors.password">{{ errors.errors.password[0] }}</span>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="register">Registrate!</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <script>
     export default {
-        data(){
+        data() {
             return {
-                name: '',
-                email: '',
-                password: '',
+                formulario: {
+                    name: '',
+                    email: '',
+                    password: ''
+                },
                 error: false,
                 errors: {},
                 success: false
             };
         },
         methods: {
-            register(){
-                axios.post('register',{
-                    name: this.name,
-                    email: this.email,
-                    password: this.password
+            register() {
+                axios.post('register', {
+                    name: this.formulario.name,
+                    email: this.formulario.email,
+                    password: this.formulario.password
 
-                }).then(response =>{
+                }).then(response => {
                     this.success = true;
-                }).catch(error =>{
+                }).catch(error => {
                     this.error = true;
                     this.errors = error.response.data;
                 })
