@@ -1,4 +1,5 @@
 *   composer install
+*   npm install
 *   configurar el .env
 *   si es apache, añadir el .htaccess
 *   php artisan key:generate
