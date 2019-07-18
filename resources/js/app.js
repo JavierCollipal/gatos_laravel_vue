@@ -44,7 +44,6 @@ Vue.use(ElementUI);
 Vue.use(VeeElement, validator);
 Vue.component('my-switch', require('./components/my-switch.vue').default);
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 const router = new VueRouter({
     mode: 'history',
