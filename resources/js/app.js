@@ -25,13 +25,7 @@ import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
 import VeeElement from 'vee-element';
 import App from './views/App';
-import Bienvenido from './views/bienvenido';
-import Listado from './views/listado';
-import Mantenedor from './views/mantenedores';
-import Creador from './views/creador';
-import Modificar from './views/modificar';
-import Ingreso  from './views/ingreso';
-import Registro from './views/registro';
+import Routes from './routes';
 import 'element-ui/lib/theme-chalk/index.css';
 
 // configure validator
@@ -50,55 +44,10 @@ Vue.use(ElementUI);
 Vue.use(VeeElement, validator);
 Vue.component('my-switch', require('./components/my-switch.vue').default);
 
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-var token = document.head.querySelector('meta[name="csrf-token"]');
-
-if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-} else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [
-        {
-            path: '/',
-            name: 'dashboard',
-            component: Bienvenido
-        },
-
-        {
-            path: '/listado',
-            name: 'listado',
-            component: Listado
-        },
-        {
-            path: '/modificar',
-            name: 'modificar',
-            component: Modificar
-        },
-        {
-            path: '/mantenedores',
-            name: 'mantenedor',
-            component: Mantenedor
-        },
-        {
-            path: '/creador',
-            name: 'creador',
-            component: Creador
-        },
-        {
-            path: '/login',
-            name: 'ingreso',
-            component: Ingreso
-        },
-        {
-            path: '/registro',
-            name: 'registro',
-            component: Registro
-        }
-    ],
+    routes: Routes
 });
 
 
